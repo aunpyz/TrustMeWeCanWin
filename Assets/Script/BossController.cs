@@ -24,6 +24,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject BossAvatar4;
     [SerializeField] private GameObject BossAvatar5;
     [SerializeField] private GameObject BossAvatar6;
+    [SerializeField] private CameraController theCamera;
+
 
     [Header("MaxHP")]
     [SerializeField] private int maxHPBoss1;
@@ -80,12 +82,14 @@ public class BossController : MonoBehaviour
 
     void BossAttackP1()
     {
+        theCamera.CameraShake();
         thePlayer1.DecreasHP(1);
         Instantiate(BloodEffect, new Vector3(thePlayer1.transform.position.x + 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
     void BossAttackP2()
     {
+        theCamera.CameraShake();
         thePlayer2.DecreasHP(1);
         Instantiate(BloodEffect, new Vector3(thePlayer2.transform.position.x - 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
     }
@@ -168,6 +172,4 @@ public class BossController : MonoBehaviour
         bossCooldownAttackCounter = bossCooldownAttackTime;
         isBossAttack = false;
     }
-
-
 }
