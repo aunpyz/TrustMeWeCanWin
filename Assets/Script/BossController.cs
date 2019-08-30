@@ -8,13 +8,14 @@ public class BossController : MonoBehaviour
 {
     private int currentBossHP;
     private int maxBossHP;
+    private bool isBossAttack;
+    private float bossCooldownAttackCounter;
+    private bool isFaceLeft;
+    [Header("Maikeaw")]
     [SerializeField] private GameObject BossHPBarUI;
     [SerializeField] private Text BossHPText;
     [SerializeField] private Text BossCountText;
-    private bool isBossAttack;
-    private float bossCooldownAttackCounter;
-    public float bossCooldownAttackTime;
-    private bool isFaceLeft;
+    [SerializeField] private CameraController theCamera;
     [SerializeField] private GameObject BloodEffect;
     [SerializeField] private PlayerController thePlayer1;
     [SerializeField] private PlayerController thePlayer2;
@@ -24,18 +25,20 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject BossAvatar4;
     [SerializeField] private GameObject BossAvatar5;
     [SerializeField] private GameObject BossAvatar6;
-    [SerializeField] private CameraController theCamera;
 
 
-    [Header("MaxHP")]
+
+    [Header("Boss Setting")]
+    public float bossCooldownAttackTime;
+    public int bossDamage;
     [SerializeField] private int maxHPBoss1;
     [SerializeField] private int maxHPBoss2;
     [SerializeField] private int maxHPBoss3;
     [SerializeField] private int maxHPBoss4;
     [SerializeField] private int maxHPBoss5;
     [SerializeField] private int maxHPBoss6;
-
     private int BossCount;
+
     void Start()
     {
         BossCount = 1;
@@ -83,21 +86,21 @@ public class BossController : MonoBehaviour
     void BossAttackP1()
     {
         theCamera.CameraShake();
-        thePlayer1.DecreasHP(1);
+        thePlayer1.DecreasHP(bossDamage);
         Instantiate(BloodEffect, new Vector3(thePlayer1.transform.position.x + 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
     void BossAttackP2()
     {
         theCamera.CameraShake();
-        thePlayer2.DecreasHP(1);
+        thePlayer2.DecreasHP(bossDamage);
         Instantiate(BloodEffect, new Vector3(thePlayer2.transform.position.x - 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
-    public void AttackBoss(string playerName)
+    public void AttackBoss(string playerName, int playerDamage)
     {
-        currentBossHP -= 1;
-        if (currentBossHP == 0)
+        currentBossHP -= playerDamage;
+        if (currentBossHP <= 0)
             BossDeath();
         else
         {

@@ -11,20 +11,26 @@ public class PlayerController : MonoBehaviour
     public float cooldownAttackTime;
     private float delayBoforeAttackCounter;
     private bool isDelayBeforeAttackCounting;
-    [SerializeField]
-    private float delayBoforeAttackTime;
     private bool isP1Attack;
     private bool isP2Attack;
     private int currentHP;
     private int maxHP;
+    [Header("MaiKeaw")]
     [SerializeField] private GameObject HPBarUI;
     [SerializeField] private BossController theBoss;
     [SerializeField] private GameObject BloodEffect;
-    [HideInInspector]
-    public bool isDeath;
     [SerializeField] private CameraController theCamera;
     [SerializeField] private Animator P1AttackAnimator;
     [SerializeField] private Animator P2AttackAnimator;
+
+    [Header("Player Setting")]
+    [SerializeField] private float delayBoforeAttackTime;
+    [SerializeField] private int P1Damage;
+    [SerializeField] private int P2Damage;
+
+    [HideInInspector]
+    public bool isDeath;
+
 
     void Start()
     {
@@ -91,7 +97,7 @@ public class PlayerController : MonoBehaviour
         isP1Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player1");
+        theBoss.AttackBoss("Player1", P1Damage);
         Instantiate(BloodEffect, new Vector3(transform.position.x + 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
@@ -101,7 +107,7 @@ public class PlayerController : MonoBehaviour
         isP2Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player2");
+        theBoss.AttackBoss("Player2", P2Damage);
         Instantiate(BloodEffect, new Vector3(transform.position.x - 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHP -= 1;
         UpdatePlayerHPBar();
-        if (currentHP == 0)
+        if (currentHP <= 0)
             PlayerDeath();
     }
 
