@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -15,13 +16,12 @@ public class BossController : MonoBehaviour
     [SerializeField] private PlayerController thePlayer2;
     [SerializeField] private GameObject BossAvatar1;
     [SerializeField] private GameObject BossAvatar2;
-
+    private int BossCount;
     void Start()
     {
+        BossCount = 1;
         maxBossHP = 20;
-        currentBossHP = maxBossHP;
-        isBossAttack = false;
-        isFaceLeft = true;
+        BossReset();
     }
 
     void Update()
@@ -67,7 +67,26 @@ public class BossController : MonoBehaviour
 
     void BossDeath()
     {
-        Debug.Log("BossDead");
+        BossAvatar1.SetActive(false);
+        BossAvatar2.SetActive(false);
+        BossCount++;
+        if (BossCount == 2)
+        {
+            BossAvatar2.SetActive(true);
+        }
+        else
+        {
+            SceneManager.LoadScene("Victory");
+        }
+        BossReset();
+    }
+
+    void BossReset()
+    {
+        currentBossHP = maxBossHP;
+        bossCooldownAttackCounter = bossCooldownAttackTime;
+        isBossAttack = false;
+        isFaceLeft = true;
     }
 
 
