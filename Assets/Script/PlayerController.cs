@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private int maxHP;
     [SerializeField] private GameObject HPBarUI;
     [SerializeField] private BossController theBoss;
+    [SerializeField] private GameObject BloodEffect;
+    // [HideInInspector]
+    public bool isDeath;
+
 
     void Start()
     {
@@ -26,19 +30,21 @@ public class PlayerController : MonoBehaviour
         #region   //Controller
         if (Input.anyKey)
         {
-            if (isPlayer1)
+            if (isPlayer1 && !isDeath)
                 if (Input.GetButtonDown("P1Attack") && !isP1Attack)
                 {
                     isP1Attack = true;
                     cooldownAttackCounter = cooldownAttackTime;
                     theBoss.AttackBoss("Player1");
+                    Instantiate(BloodEffect, new Vector3(transform.position.x + 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
                 }
-            if (isPlayer2)
+            if (isPlayer2 && !isDeath)
                 if (Input.GetButtonDown("P2Attack") && !isP2Attack)
                 {
                     isP2Attack = true;
                     cooldownAttackCounter = cooldownAttackTime;
                     theBoss.AttackBoss("Player2");
+                    Instantiate(BloodEffect, new Vector3(transform.position.x - 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
                 }
         }
         #endregion
@@ -61,7 +67,7 @@ public class PlayerController : MonoBehaviour
     void UpdatePlayerHPBar()
     {
         float hp_ratio = (float)currentHP / (float)maxHP;
-        if (hp_ratio <= 1)
+        if (hp_ratio >= 0)
             HPBarUI.transform.localScale = new Vector3(hp_ratio, 1, 1);
     }
 
@@ -69,5 +75,13 @@ public class PlayerController : MonoBehaviour
     {
         currentHP -= 1;
         UpdatePlayerHPBar();
+        if (currentHP == 0)
+            PlayerDeath();
     }
+
+    void PlayerDeath()
+    {
+        isDeath = true;
+    }
+
 }
