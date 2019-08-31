@@ -20,10 +20,10 @@ public class ItemGenerator : MonoBehaviour
         heal
     }
 
-    public GameObject item;
+    public Item item;
 
-    private ItemGenerator _instance;
-    public ItemGenerator Instance
+    private static ItemGenerator _instance;
+    public static ItemGenerator Instance
     {
         get
         {
@@ -42,8 +42,9 @@ public class ItemGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateItem()
+    public Item GenerateItem()
     {
         var itemType = Helper.RandomEnumValue<ItemType>();
+        return Instantiate(item).Init(itemType.ToString());
     }
 }

@@ -8,7 +8,6 @@ public interface IConsumable
     void Add();
 }
 
-[RequireComponent(typeof(Collider2D))]
 public sealed class Item : MonoBehaviour, IConsumable
 {
     [SerializeField] private string name;
@@ -28,5 +27,12 @@ public sealed class Item : MonoBehaviour, IConsumable
     {
         itemEffect(self, other);
         Destroy(gameObject);
+    }
+
+    public Item Init(string name = "default", string description = "description")
+    {
+        this.name = name;
+        this.description = description;
+        return this;
     }
 }
