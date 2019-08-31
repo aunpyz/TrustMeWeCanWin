@@ -58,7 +58,7 @@ MonoBehaviour:
     url: slow item-02-01
     type: 2
   - name: Reflect Shield
-    description: Reflect the damage you received to friend
+    description: Reflect the damage you received to friend and boss
     url: reflect item-01-01
     type: 3
   - name: HP Potion

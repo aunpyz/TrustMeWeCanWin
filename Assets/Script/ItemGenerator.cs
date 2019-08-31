@@ -130,6 +130,7 @@ public class ItemGenerator : MonoBehaviour
                                     boss.p1 = (int? damage) =>
                                     {
                                         boss.BossAttackP2(null);
+                                        self.P1AttackBoss();
                                         boss.ResetAttackHandler();
                                     };
                                 }
@@ -138,6 +139,7 @@ public class ItemGenerator : MonoBehaviour
                                     boss.p2 = (int? damage) =>
                                     {
                                         boss.BossAttackP1(null);
+                                        self.P2AttackBoss();
                                         boss.ResetAttackHandler();
                                     };
                                 }

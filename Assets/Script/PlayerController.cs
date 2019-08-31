@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void P1AttackBoss()
+    public void P1AttackBoss()
     {
         isDelayBeforeAttackCounting = false;
         isP1Attack = true;
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
         //Instantiate(BloodEffect, P1AttackBloodSpawn.position, Quaternion.identity);
     }
 
-    void P2AttackBoss()
+    public void P2AttackBoss()
     {
         isDelayBeforeAttackCounting = false;
         isP2Attack = true;
