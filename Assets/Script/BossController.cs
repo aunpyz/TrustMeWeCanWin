@@ -27,6 +27,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject BrownBloodEffect;
     [SerializeField] private GameObject GreenBloodEffect;
     [SerializeField] private GameObject RainbowBloodEffect;
+    [SerializeField] private GameObject YellowBloodEffect;
+    [SerializeField] private GameObject GreyBloodEffect;
 
     [Header("BossComp")]
     [SerializeField] private GameObject BossHPBarUI;
@@ -96,38 +98,39 @@ public class BossController : MonoBehaviour
     void Update()
     {
 
-        if (bossCooldownAttackCounter >= 0)
-            bossCooldownAttackCounter -= Time.deltaTime;
-        else if (bossCooldownAttackCounter < 0)
-        {
-            isBossAttack = true;
-            if (isFaceLeft && !thePlayer1.isDeath)
+        if (thePlayer1.isStart || thePlayer2.isStart)
+            if (bossCooldownAttackCounter >= 0)
+                bossCooldownAttackCounter -= Time.deltaTime;
+            else if (bossCooldownAttackCounter < 0)
             {
-                p1(null);
-            }
-            else if (!isFaceLeft && !thePlayer2.isDeath)
-            {
-                p2(null);
-            }
-            else if (thePlayer1.isDeath && !thePlayer2.isDeath)
-            {
-                isFaceLeft = false;
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-                p2(null);
-            }
-            else if (thePlayer2.isDeath && !thePlayer1.isDeath)
-            {
-                isFaceLeft = true;
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-                p1(null);
-            }
-            else
-            {
+                isBossAttack = true;
+                if (isFaceLeft && !thePlayer1.isDeath)
+                {
+                    p1(null);
+                }
+                else if (!isFaceLeft && !thePlayer2.isDeath)
+                {
+                    p2(null);
+                }
+                else if (thePlayer1.isDeath && !thePlayer2.isDeath)
+                {
+                    isFaceLeft = false;
+                    transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                    p2(null);
+                }
+                else if (thePlayer2.isDeath && !thePlayer1.isDeath)
+                {
+                    isFaceLeft = true;
+                    transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                    p1(null);
+                }
+                else
+                {
 
+                }
+                //StartCoroutine(DelayBossBeforeAttack());
+                bossCooldownAttackCounter = bossCooldownAttackTime;
             }
-            //StartCoroutine(DelayBossBeforeAttack());
-            bossCooldownAttackCounter = bossCooldownAttackTime;
-        }
     }
 
     IEnumerator DelayBossBeforeAttack()
@@ -226,11 +229,11 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 4)
         {
-            Instantiate(GreenBloodEffect, bloodPos, Quaternion.identity);
+            Instantiate(GreyBloodEffect, bloodPos, Quaternion.identity);
         }
         else if (BossCount == 5)
         {
-            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+            Instantiate(YellowBloodEffect, bloodPos, Quaternion.identity);
         }
         else
         {

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isStart;
     public bool isPlayer1;
     public bool isPlayer2;
     private float cooldownAttackCounter;
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         #region   //Controller
-        if (Input.anyKey)
+        if (Input.anyKey && isStart)
         {
             if (isPlayer1 && !isDeath)
             {
