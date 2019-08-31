@@ -31,11 +31,14 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isDeath;
 
+    [SerializeField] private List<Item> items;
+    [SerializeField] private PlayerController friend;
 
     void Start()
     {
         maxHP = 10;
         currentHP = maxHP;
+        items = new List<Item>(3);
     }
 
     void Update()
@@ -136,4 +139,27 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+
+    public void AddItem(Item item)
+    {
+        if (items.Count < 3)
+        {
+            items.Add(item);
+        }
+        else
+        {
+            items.RemoveAt(0);
+            items.Add(item);
+        }
+    }
+
+    public void RemoveItem(Item item)
+    {
+        items.Remove(item);
+    }
+
+    public void ConsumeItem(Item item)
+    {
+        item.Consume(this, friend);
+    }
 }
