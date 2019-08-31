@@ -3537,7 +3537,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6612857982690274915, guid: 34312e2be35ae63878b3628ba0d2622f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 34312e2be35ae63878b3628ba0d2622f, type: 3}
 --- !u!114 &1159610268 stripped
 MonoBehaviour:
