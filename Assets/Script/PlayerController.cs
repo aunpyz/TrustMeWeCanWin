@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer PlayerBody;
     [SerializeField] private SpriteRenderer PlayerHand;
     [SerializeField] private GameObject GraveObject;
+    [SerializeField] private Transform P1AttackBloodSpawn;
+    [SerializeField] private Transform P2AttackBloodSpawn;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;
@@ -43,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        maxHP = 10;
         currentHP = maxHP;
         items = new List<Item>(3);
     }
@@ -121,8 +122,8 @@ public class PlayerController : MonoBehaviour
         isP1Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player1", P1Damage);
-        Instantiate(BloodEffect, new Vector3(transform.position.x + 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
+        theBoss.AttackBoss("Player1", P1Damage, P1AttackBloodSpawn.position);
+        //Instantiate(BloodEffect, P1AttackBloodSpawn.position, Quaternion.identity);
     }
 
     void P2AttackBoss()
@@ -131,8 +132,8 @@ public class PlayerController : MonoBehaviour
         isP2Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player2", P2Damage);
-        Instantiate(BloodEffect, new Vector3(transform.position.x - 2, transform.position.y + 1, BloodEffect.transform.position.z), Quaternion.identity);
+        theBoss.AttackBoss("Player2", P2Damage, P2AttackBloodSpawn.position);
+        //Instantiate(BloodEffect, P2AttackBloodSpawn.position, Quaternion.identity);
     }
 
     void UpdatePlayerHPBar()
@@ -162,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestartGame()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("Main");
     }
 

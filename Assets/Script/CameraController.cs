@@ -18,6 +18,12 @@ public class CameraController : MonoBehaviour
 
     public void CameraShake()
     {
-        theCameraShake.SetTrigger("CameraShake");
+        int randomNumber = Random.Range(0, 3);
+        if (randomNumber == 0)
+            theCameraShake.SetTrigger("CameraShake");
+        else if (randomNumber == 1)
+            theCameraShake.SetTrigger("CameraShake1");
+        else if (randomNumber == 2)
+            theCameraShake.SetTrigger("CameraShake2");
     }
 }

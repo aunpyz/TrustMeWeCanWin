@@ -80,6 +80,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1663833538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663833539}
+  m_Layer: 0
+  m_Name: BloodSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663833539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663833538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.3, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5470267556655248116}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5470267556655248122
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +143,7 @@ Transform:
   m_Children:
   - {fileID: 832905078}
   - {fileID: 1999767996146163783}
+  - {fileID: 1663833539}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,7 +210,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer1: 1
   isPlayer2: 0
-  cooldownAttackTime: 0.1
   HPBarUI: {fileID: 0}
   theBoss: {fileID: 0}
   BloodEffect: {fileID: 1273763612758096013, guid: 0f970636fd05f814793ea73f6ce94e68,
@@ -190,8 +220,11 @@ MonoBehaviour:
   PlayerBody: {fileID: 5470267556655248117}
   PlayerHand: {fileID: 832905079}
   GraveObject: {fileID: 1999767996146163777}
-  maxHP: 0
-  delayBoforeAttackTime: 0.1
+  P1AttackBloodSpawn: {fileID: 1663833539}
+  P2AttackBloodSpawn: {fileID: 0}
+  currentHP: 0
+  maxHP: 10
+  cooldownAttackTime: 0.1
   P1Damage: 1
   P2Damage: 0
   isDeath: 0

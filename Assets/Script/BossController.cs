@@ -11,12 +11,16 @@ public class BossController : MonoBehaviour
     private bool isBossAttack;
     private float bossCooldownAttackCounter;
     private bool isFaceLeft;
-    [Header("Maikeaw")]
+    [Header("BloodType")]
+    [SerializeField] private GameObject BloodEffect;
+    [SerializeField] private GameObject WhiteBloodEffect;
+    [SerializeField] private GameObject BrownBloodEffect;
+
+    [Header("BossComp")]
     [SerializeField] private GameObject BossHPBarUI;
     [SerializeField] private Text BossHPText;
     [SerializeField] private Text BossCountText;
     [SerializeField] private CameraController theCamera;
-    [SerializeField] private GameObject BloodEffect;
     [SerializeField] private PlayerController thePlayer1;
     [SerializeField] private PlayerController thePlayer2;
     [SerializeField] private GameObject BossAvatar1;
@@ -116,6 +120,7 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 2)
         {
+            BossAttackAnimation2.SetTrigger("Boss2Attack");
             Instantiate(BloodEffect, BossBloodSpawnPos2.position, Quaternion.identity);
         }
         else if (BossCount == 3)
@@ -132,11 +137,12 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 6)
         {
+            BossAttackAnimation6.SetTrigger("Boss6Attack");
             Instantiate(BloodEffect, BossBloodSpawnPos6.position, Quaternion.identity);
         }
     }
 
-    public void AttackBoss(string playerName, int playerDamage)
+    public void AttackBoss(string playerName, int playerDamage, Vector3 bloodPos)
     {
         currentBossHP -= playerDamage;
         if (currentBossHP <= 0)
@@ -153,8 +159,38 @@ public class BossController : MonoBehaviour
                 isFaceLeft = false;
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
             }
+            BossBleed(bloodPos);
             UpdateBossHPBar();
         }
+    }
+
+    void BossBleed(Vector3 bloodPos)
+    {
+        if (BossCount == 1)
+        {
+            Instantiate(WhiteBloodEffect, bloodPos, Quaternion.identity);
+        }
+        else if (BossCount == 2)
+        {
+            Instantiate(BrownBloodEffect, bloodPos, Quaternion.identity);
+        }
+        else if (BossCount == 3)
+        {
+            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+        }
+        else if (BossCount == 4)
+        {
+            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+        }
+        else if (BossCount == 5)
+        {
+            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+        }
+
     }
 
     void UpdateBossHPBar()

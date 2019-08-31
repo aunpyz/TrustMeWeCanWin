@@ -46,7 +46,7 @@ public class ItemGenerator : MonoBehaviour
     {
         var itemType = Helper.RandomEnumValue<ItemType>();
         return Instantiate(item).Init(
-            (PlayerController self, PlayerController friend) => {},
+            (PlayerController self, PlayerController friend) => { },
             itemType.ToString());
     }
 }
