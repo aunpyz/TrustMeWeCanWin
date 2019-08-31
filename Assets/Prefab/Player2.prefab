@@ -392,6 +392,7 @@ MonoBehaviour:
   isDeath: 0
   items: []
   friend: {fileID: 0}
+  playerName: 
 --- !u!61 &999544803
 BoxCollider2D:
   m_ObjectHideFlags: 0

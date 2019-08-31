@@ -230,7 +230,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe63dd5b5e5aa9e499c8cbe129845dd5, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.57254905}
+  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.57254905}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -387,11 +387,12 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 10
   cooldownAttackTime: 0.1
-  P1Damage: 1
+  P1Damage: 10
   P2Damage: 0
   isDeath: 0
   items: []
   friend: {fileID: 0}
+  playerName: 
 --- !u!61 &1848445451
 BoxCollider2D:
   m_ObjectHideFlags: 0

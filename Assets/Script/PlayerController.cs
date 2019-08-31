@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool isPlayer1;
     public bool isPlayer2;
     private float cooldownAttackCounter;
+    [SerializeField]
     private float delayBoforeAttackTime;
     private float delayBoforeAttackCounter;
     private bool isDelayBeforeAttackCounting;
@@ -18,13 +19,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BossController theBoss;
     [SerializeField] private GameObject BloodEffect;
     [SerializeField] private CameraController theCamera;
-    [SerializeField] private Animator P1AttackAnimator;
-    [SerializeField] private Animator P2AttackAnimator;
+    public Animator P1AttackAnimator;
+    public Animator P2AttackAnimator;
     [SerializeField] private SpriteRenderer PlayerBody;
     [SerializeField] private SpriteRenderer PlayerHand;
     [SerializeField] private GameObject GraveObject;
     public Transform P1AttackBloodSpawn;
     public Transform P2AttackBloodSpawn;
+    [SerializeField] AudioSource AttackSound;
+    [SerializeField] AudioSource AttackSound2;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButtonDown("P1Attack") && !isP1Attack)
                 {
+                    AttackSound.Play();
                     P1AttackAnimator.SetTrigger("P1Attack");
                     isDelayBeforeAttackCounting = true;
                     delayBoforeAttackCounter = delayBoforeAttackTime;
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButtonDown("P2Attack") && !isP2Attack)
                 {
+                    AttackSound2.Play();
                     P2AttackAnimator.SetTrigger("P2Attack");
                     isDelayBeforeAttackCounting = true;
                     delayBoforeAttackCounter = delayBoforeAttackTime;
@@ -102,6 +107,10 @@ public class PlayerController : MonoBehaviour
                 {
                     ConsumeItem();
                 }
+            }
+            if (Input.GetButtonDown("Restart"))
+            {
+                RestartGame();
             }
         }
         #endregion

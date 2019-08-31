@@ -8,6 +8,7 @@ public class BossController : MonoBehaviour
 {
     private int currentBossHP;
     private int maxBossHP;
+    [SerializeField]
     private bool isBossAttack;
     private float bossCooldownAttackCounter;
     private bool isFaceLeft;
@@ -53,21 +54,38 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform BossBloodSpawnPos5;
     [SerializeField] private Transform BossBloodSpawnPos6;
 
+    [HideInInspector]
+    public int bossDamage;
     [Header("Boss Setting")]
     public float bossCooldownAttackTime;
-    public int bossDamage;
     [SerializeField] private int maxHPBoss1;
     [SerializeField] private int maxHPBoss2;
     [SerializeField] private int maxHPBoss3;
     [SerializeField] private int maxHPBoss4;
     [SerializeField] private int maxHPBoss5;
     [SerializeField] private int maxHPBoss6;
+    [SerializeField] private int bossDamage1;
+    [SerializeField] private int bossDamage2;
+    [SerializeField] private int bossDamage3;
+    [SerializeField] private int bossDamage4;
+    [SerializeField] private int bossDamage5;
+    [SerializeField] private int bossDamage6;
+
+    [Header("Boss Name")]
+    [SerializeField] private string boss0Name;
+    [SerializeField] private string boss1Name;
+    [SerializeField] private string boss2Name;
+    [SerializeField] private string boss3Name;
+    [SerializeField] private string boss4Name;
+    [SerializeField] private string boss5Name;
+    [SerializeField] private string boss6Name;
     private int BossCount;
     public AttackHandler p1;
     public AttackHandler p2;
 
     void Start()
     {
+        bossDamage = bossDamage1;
         ResetAttackHandler();
         BossCount = 1;
         maxBossHP = maxHPBoss1;
@@ -105,16 +123,25 @@ public class BossController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Loos");
+
             }
+            //StartCoroutine(DelayBossBeforeAttack());
             bossCooldownAttackCounter = bossCooldownAttackTime;
         }
+    }
+
+    IEnumerator DelayBossBeforeAttack()
+    {
+        yield return new WaitForSeconds(0.25f);
+        bossCooldownAttackCounter = bossCooldownAttackTime;
+        isBossAttack = false;
     }
 
     public void BossAttackP1(int? damage)
     {
         theCamera.CameraShake();
         BossAttackAnimation();
+        thePlayer1.P1AttackAnimator.SetTrigger("Attacked");
         thePlayer1.DecreasHP(damage ?? bossDamage);
     }
 
@@ -122,6 +149,7 @@ public class BossController : MonoBehaviour
     {
         theCamera.CameraShake();
         BossAttackAnimation();
+        thePlayer2.P2AttackAnimator.SetTrigger("Attacked");
         thePlayer2.DecreasHP(damage ?? bossDamage);
     }
 
@@ -139,14 +167,17 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 3)
         {
+            BossAttackAnimation3.SetTrigger("Boss3Attack");
             Instantiate(BloodEffect, BossBloodSpawnPos3.position, Quaternion.identity);
         }
         else if (BossCount == 4)
         {
+            BossAttackAnimation4.SetTrigger("Boss4Attack");
             Instantiate(BloodEffect, BossBloodSpawnPos4.position, Quaternion.identity);
         }
         else if (BossCount == 5)
         {
+            BossAttackAnimation5.SetTrigger("Boss5Attack");
             Instantiate(BloodEffect, BossBloodSpawnPos5.position, Quaternion.identity);
         }
         else if (BossCount == 6)
@@ -215,19 +246,23 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 2)
         {
-
+            BossAttackAnimation2.SetTrigger("Attacked");
         }
         else if (BossCount == 3)
         {
+            BossAttackAnimation3.SetTrigger("Attacked");
         }
         else if (BossCount == 4)
         {
+            BossAttackAnimation4.SetTrigger("Attacked");
         }
         else if (BossCount == 5)
         {
+            BossAttackAnimation5.SetTrigger("Attacked");
         }
         else
         {
+            BossAttackAnimation6.SetTrigger("Attacked");
         }
     }
 
@@ -253,27 +288,31 @@ public class BossController : MonoBehaviour
     {
         if (BossCount == 1)
         {
-            BossCountText.text = "Kala";
+            BossCountText.text = boss1Name;
         }
         else if (BossCount == 2)
         {
-            BossCountText.text = "Heeb";
+            BossCountText.text = boss2Name;
         }
         else if (BossCount == 3)
         {
-            BossCountText.text = "Head Knight";
+            BossCountText.text = boss3Name;
         }
         else if (BossCount == 4)
         {
-            BossCountText.text = "???";
+            BossCountText.text = boss4Name;
         }
         else if (BossCount == 5)
         {
-            BossCountText.text = "???";
+            BossCountText.text = boss5Name;
+        }
+        else if (BossCount == 6)
+        {
+            BossCountText.text = boss6Name;
         }
         else
         {
-            BossCountText.text = "The King";
+            BossCountText.text = boss6Name;
         }
     }
 
@@ -290,26 +329,31 @@ public class BossController : MonoBehaviour
         {
             BossAvatar2.SetActive(true);
             maxBossHP = maxHPBoss2;
+            bossDamage = bossDamage2;
         }
         else if (BossCount == 3)
         {
             BossAvatar3.SetActive(true);
             maxBossHP = maxHPBoss3;
+            bossDamage = bossDamage3;
         }
         else if (BossCount == 4)
         {
             BossAvatar4.SetActive(true);
             maxBossHP = maxHPBoss4;
+            bossDamage = bossDamage4;
         }
         else if (BossCount == 5)
         {
             BossAvatar5.SetActive(true);
             maxBossHP = maxHPBoss5;
+            bossDamage = bossDamage5;
         }
         else if (BossCount == 6)
         {
             BossAvatar6.SetActive(true);
             maxBossHP = maxHPBoss6;
+            bossDamage = bossDamage6;
         }
         else
         {
