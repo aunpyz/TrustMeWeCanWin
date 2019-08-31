@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public bool isDeath;
 
     [SerializeField] private List<Item> items;
+    private int currentItemIndex = 0;
+    private float itemCooldown = 1f;
     [SerializeField] private PlayerController friend;
 
     void Start()
@@ -47,19 +49,33 @@ public class PlayerController : MonoBehaviour
         if (Input.anyKey)
         {
             if (isPlayer1 && !isDeath)
+            {
                 if (Input.GetButtonDown("P1Attack") && !isP1Attack)
                 {
                     P1AttackAnimator.SetTrigger("P1Attack");
                     isDelayBeforeAttackCounting = true;
                     delayBoforeAttackCounter = delayBoforeAttackTime;
                 }
+
+                if (Input.GetButtonDown("P1UseItem") && items.Count > 0)
+                {
+                    ConsumeItem();
+                }
+            }
             if (isPlayer2 && !isDeath)
+            {
                 if (Input.GetButtonDown("P2Attack") && !isP2Attack)
                 {
                     P2AttackAnimator.SetTrigger("P2Attack");
                     isDelayBeforeAttackCounting = true;
                     delayBoforeAttackCounter = delayBoforeAttackTime;
                 }
+
+                if (Input.GetButtonDown("P2UseItem") && items.Count > 0)
+                {
+                    ConsumeItem();
+                }
+            }
         }
         #endregion
 
@@ -158,8 +174,11 @@ public class PlayerController : MonoBehaviour
         items.Remove(item);
     }
 
-    public void ConsumeItem(Item item)
+    public void ConsumeItem()
     {
+        var item = items[currentItemIndex];
+        RemoveItem(item);
+        Debug.Log(item.Name);
         item.Consume(this, friend);
     }
 }
