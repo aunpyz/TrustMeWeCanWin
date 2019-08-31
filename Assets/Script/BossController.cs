@@ -101,7 +101,7 @@ public class BossController : MonoBehaviour
     {
         currentBossHP -= playerDamage;
         if (currentBossHP <= 0)
-            BossDeath();
+            BossDeath(playerName);
         else
         {
             if (playerName.Equals("Player1"))
@@ -127,7 +127,7 @@ public class BossController : MonoBehaviour
             BossHPBarUI.transform.localScale = new Vector3(hp_ratio, 1, 1);
     }
 
-    void BossDeath()
+    void BossDeath(string playerName)
     {
         BossAvatar1.SetActive(false);
         BossAvatar2.SetActive(false);
@@ -164,6 +164,16 @@ public class BossController : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Victory");
+        }
+        Item droppedItem = ItemGenerator.Instance.GenerateItem();
+        switch (playerName)
+        {
+            case "Player1":
+                thePlayer1.AddItem(droppedItem);
+                break;
+            case "Player2":
+                thePlayer2.AddItem(droppedItem);
+                break;
         }
         BossReset();
     }
