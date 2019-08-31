@@ -15,6 +15,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject BloodEffect;
     [SerializeField] private GameObject WhiteBloodEffect;
     [SerializeField] private GameObject BrownBloodEffect;
+    [SerializeField] private GameObject GreenBloodEffect;
+    [SerializeField] private GameObject RainbowBloodEffect;
 
     [Header("BossComp")]
     [SerializeField] private GameObject BossHPBarUI;
@@ -160,6 +162,7 @@ public class BossController : MonoBehaviour
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
             }
             BossBleed(bloodPos);
+            BossAttackedAnimation();
             UpdateBossHPBar();
         }
     }
@@ -176,11 +179,11 @@ public class BossController : MonoBehaviour
         }
         else if (BossCount == 3)
         {
-            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+            Instantiate(GreenBloodEffect, bloodPos, Quaternion.identity);
         }
         else if (BossCount == 4)
         {
-            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+            Instantiate(GreenBloodEffect, bloodPos, Quaternion.identity);
         }
         else if (BossCount == 5)
         {
@@ -188,20 +191,73 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            Instantiate(BloodEffect, bloodPos, Quaternion.identity);
+            Instantiate(RainbowBloodEffect, bloodPos, Quaternion.identity);
         }
-
     }
+
+    void BossAttackedAnimation()
+    {
+        if (BossCount == 1)
+        {
+            BossAttackAnimation1.SetTrigger("Attacked");
+        }
+        else if (BossCount == 2)
+        {
+
+        }
+        else if (BossCount == 3)
+        {
+        }
+        else if (BossCount == 4)
+        {
+        }
+        else if (BossCount == 5)
+        {
+        }
+        else
+        {
+        }
+    }
+
 
     void UpdateBossHPBar()
     {
         BossHPText.text = "" + currentBossHP;
-        BossCountText.text = "Boss:" + BossCount;
+        //BossCountText.text = "Boss:" + BossCount;
+        UpdateBossName();
         float hp_ratio = (float)currentBossHP / (float)maxBossHP;
         if (hp_ratio >= 0)
             BossHPBarUI.transform.localScale = new Vector3(hp_ratio, 1, 1);
         else
             BossHPBarUI.transform.localScale = new Vector3(0, 1, 1);
+    }
+
+    void UpdateBossName()
+    {
+        if (BossCount == 1)
+        {
+            BossCountText.text = "Kala";
+        }
+        else if (BossCount == 2)
+        {
+            BossCountText.text = "Heeb";
+        }
+        else if (BossCount == 3)
+        {
+            BossCountText.text = "Head Knight";
+        }
+        else if (BossCount == 4)
+        {
+            BossCountText.text = "???";
+        }
+        else if (BossCount == 5)
+        {
+            BossCountText.text = "???";
+        }
+        else
+        {
+            BossCountText.text = "The King";
+        }
     }
 
     void BossDeath(string playerName)
