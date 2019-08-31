@@ -8,14 +8,22 @@ public class ItemSlot : MonoBehaviour
     public Text itemName;
     public Image itemImage;
 
-    private void Start()
-    {
-        itemName.text = "";
-    }
-
-    public void Assign(Item item)
+    public void Assign(Item item, bool selected)
     {
         itemName.text = item?.Name ?? "";
+        ChangeActive(selected);
+    }
+
+    public void ChangeActive(bool selected)
+    {
+        if (selected)
+        {
+            itemImage.color = Color.green;
+        }
+        else
+        {
+            itemImage.color = Color.white;
+        }
     }
 
     public void Remove()

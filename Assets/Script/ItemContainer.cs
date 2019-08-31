@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +16,18 @@ public class ItemContainer : MonoBehaviour
         get { return items.Count <= 0; }
     }
 
-    public void MoveSelecte()
+    private void Start()
+    {
+        AssignItemsData();
+    }
+
+    public void MoveSelected()
     {
         currentItemIndex = currentItemIndex + 1 >= 3 ? 0 : currentItemIndex + 1;
+        for (int i = 0; i < slots.Length; ++i)
+        {
+            slots[i].ChangeActive(currentItemIndex == i);
+        }
     }
 
     public void AddItem(Item item)
@@ -45,22 +55,30 @@ public class ItemContainer : MonoBehaviour
     // remove and return selected item
     public Item PullSelected()
     {
-        var item = items[currentItemIndex];
-        RemoveItem(item);
-        return item;
+        try
+        {
+            var item = items[currentItemIndex];
+            RemoveItem(item);
+            return item;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
 
     private void AssignItemsData()
     {
         for (int i = 0; i < slots.Length; ++i)
         {
+            var selected = currentItemIndex == i;
             try
             {
-                slots[i].Assign(items[i]);
+                slots[i].Assign(items[i], selected);
             }
             catch
             {
-                slots[i].Assign(null);
+                slots[i].Assign(null, selected);
             }
         }
     }

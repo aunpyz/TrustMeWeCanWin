@@ -90,6 +90,11 @@ public class PlayerController : MonoBehaviour
                 {
                     ConsumeItem();
                 }
+
+                if (Input.GetButtonDown("P1NextItem"))
+                {
+                    itemContainer.MoveSelected();
+                }
             }
             if (isPlayer2 && !isDeath)
             {
@@ -104,6 +109,11 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("P2UseItem") && !itemContainer.Empty)
                 {
                     ConsumeItem();
+                }
+
+                if (Input.GetButtonDown("P2NextItem"))
+                {
+                    itemContainer.MoveSelected();
                 }
             }
             if (Input.GetButtonDown("Restart"))
@@ -208,8 +218,15 @@ public class PlayerController : MonoBehaviour
 
     public void ConsumeItem()
     {
-        var item = itemContainer.PullSelected();
-        item.Consume(this, friend);
+        try
+        {
+            var item = itemContainer.PullSelected();
+            item.Consume(this, friend);
+        }
+        catch
+        {
+            Debug.LogError("item is null");
+        }
     }
 
     public void InitPlayerName(bool inverse = false)
