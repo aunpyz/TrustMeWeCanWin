@@ -59,9 +59,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isDeath;
 
-    [SerializeField] private List<Item> items;
-    private int currentItemIndex = 0;
-    private float itemCooldown = 1f;
+    [Header("Player's item")]
+    public ItemContainer itemContainer;
     [SerializeField] private PlayerController friend;
     [SerializeField] private string playerName;
 
@@ -70,7 +69,6 @@ public class PlayerController : MonoBehaviour
         InitPlayerName();
         maxHP = 10;
         currentHP = maxHP;
-        items = new List<Item>(3);
     }
 
     void Update()
@@ -88,7 +86,7 @@ public class PlayerController : MonoBehaviour
                     delayBoforeAttackCounter = delayBoforeAttackTime;
                 }
 
-                if (Input.GetButtonDown("P1UseItem") && items.Count > 0)
+                if (Input.GetButtonDown("P1UseItem") && !itemContainer.Empty)
                 {
                     ConsumeItem();
                 }
@@ -103,7 +101,7 @@ public class PlayerController : MonoBehaviour
                     delayBoforeAttackCounter = delayBoforeAttackTime;
                 }
 
-                if (Input.GetButtonDown("P2UseItem") && items.Count > 0)
+                if (Input.GetButtonDown("P2UseItem") && !itemContainer.Empty)
                 {
                     ConsumeItem();
                 }
@@ -200,34 +198,17 @@ public class PlayerController : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        if (items.Count < 3)
-        {
-            items.Add(item);
-        }
-        else
-        {
-            items[0].Destroy();
-            items.RemoveAt(0);
-            items.Add(item);
-        }
-
-        Debug.Log($"{playerName} got: ");
-        foreach (var i in items)
-        {
-            Debug.Log(i.Name);
-        }
+        itemContainer.AddItem(item);
     }
 
     public void RemoveItem(Item item)
     {
-        items.Remove(item);
+        itemContainer.RemoveItem(item);
     }
 
     public void ConsumeItem()
     {
-        var item = items[currentItemIndex];
-        RemoveItem(item);
-        Debug.Log(item.Name);
+        var item = itemContainer.PullSelected();
         item.Consume(this, friend);
     }
 

@@ -390,6 +390,7 @@ MonoBehaviour:
   P1Damage: 10
   P2Damage: 0
   isDeath: 0
+  itemContainer: {fileID: 0}
   items: []
   friend: {fileID: 0}
   playerName: 
@@ -507,15 +508,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaf7a5f724e59a4b8739a7e8fe0cb98, type: 3}
---- !u!1 &1999767996146163777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5776659517303738019, guid: baaf7a5f724e59a4b8739a7e8fe0cb98,
-    type: 3}
-  m_PrefabInstance: {fileID: 5470267556545195746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1999767996146163783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5776659517303738021, guid: baaf7a5f724e59a4b8739a7e8fe0cb98,
+    type: 3}
+  m_PrefabInstance: {fileID: 5470267556545195746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1999767996146163777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5776659517303738019, guid: baaf7a5f724e59a4b8739a7e8fe0cb98,
     type: 3}
   m_PrefabInstance: {fileID: 5470267556545195746}
   m_PrefabAsset: {fileID: 0}
