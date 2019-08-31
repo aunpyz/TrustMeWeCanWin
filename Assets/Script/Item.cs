@@ -5,17 +5,19 @@ public interface IConsumable
     string Name { get; }
     string Description { get; }
     void Consume(PlayerController self, PlayerController other);
+    void Destroy();
 }
 
+[System.Serializable]
 public sealed class Item : MonoBehaviour, IConsumable
 {
-    [SerializeField] private string name;
-    [SerializeField] private string description;
+    [SerializeField] private string itemName;
+    [SerializeField] private string itemDescription;
     public delegate void ItemEffect(PlayerController self, PlayerController other);
     public ItemEffect itemEffect;
 
-    public string Name => name;
-    public string Description => description;
+    public string Name => itemName;
+    public string Description => itemDescription;
 
     public void Consume(PlayerController self, PlayerController other)
     {
@@ -23,11 +25,21 @@ public sealed class Item : MonoBehaviour, IConsumable
         Destroy(gameObject);
     }
 
-    public Item Init(ItemEffect itemEffect, string name = "default", string description = "description")
+    public void Destroy() 
+    {
+        Destroy(gameObject);
+    }
+
+    public Item Init(string name = "default", string description = "description")
+    {
+        itemName = name;
+        itemDescription = description;
+        return this;
+    }
+
+    public Item SetEffect(ItemEffect itemEffect)
     {
         this.itemEffect = itemEffect;
-        this.name = name;
-        this.description = description;
         return this;
     }
 }

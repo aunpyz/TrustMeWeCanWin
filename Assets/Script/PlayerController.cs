@@ -23,17 +23,35 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer PlayerBody;
     [SerializeField] private SpriteRenderer PlayerHand;
     [SerializeField] private GameObject GraveObject;
-    [SerializeField] private Transform P1AttackBloodSpawn;
-    [SerializeField] private Transform P2AttackBloodSpawn;
+    public Transform P1AttackBloodSpawn;
+    public Transform P2AttackBloodSpawn;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;
+    public int CurrentHP
+    {
+        get { return currentHP; }
+        set { currentHP = value > maxHP ? maxHP : value; }
+    }
 
     [Header("Player Setting")]
     [SerializeField] private int maxHP;
     public float cooldownAttackTime;
     [SerializeField] private int P1Damage;
     [SerializeField] private int P2Damage;
+    public int Damage
+    {
+        get
+        {
+            if (isPlayer1) return P1Damage;
+            else return P2Damage;
+        }
+        set
+        {
+            if (isPlayer1) P1Damage = value;
+            else P2Damage = value;
+        }
+    }
 
     [HideInInspector]
     public bool isDeath;
@@ -42,9 +60,12 @@ public class PlayerController : MonoBehaviour
     private int currentItemIndex = 0;
     private float itemCooldown = 1f;
     [SerializeField] private PlayerController friend;
+    [SerializeField] private string playerName;
 
     void Start()
     {
+        InitPlayerName();
+        maxHP = 10;
         currentHP = maxHP;
         items = new List<Item>(3);
     }
@@ -122,7 +143,7 @@ public class PlayerController : MonoBehaviour
         isP1Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player1", P1Damage, P1AttackBloodSpawn.position);
+        theBoss.AttackBoss(playerName, P1Damage, P1AttackBloodSpawn.position);
         //Instantiate(BloodEffect, P1AttackBloodSpawn.position, Quaternion.identity);
     }
 
@@ -132,11 +153,11 @@ public class PlayerController : MonoBehaviour
         isP2Attack = true;
         theCamera.CameraShake();
         cooldownAttackCounter = cooldownAttackTime;
-        theBoss.AttackBoss("Player2", P2Damage, P2AttackBloodSpawn.position);
+        theBoss.AttackBoss(playerName, P2Damage, P2AttackBloodSpawn.position);
         //Instantiate(BloodEffect, P2AttackBloodSpawn.position, Quaternion.identity);
     }
 
-    void UpdatePlayerHPBar()
+    public void UpdatePlayerHPBar()
     {
         float hp_ratio = (float)currentHP / (float)maxHP;
         if (hp_ratio >= 0)
@@ -145,9 +166,9 @@ public class PlayerController : MonoBehaviour
             HPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
-    public void DecreasHP(int bossDamage)
+    public void DecreasHP(int? damage)
     {
-        currentHP -= bossDamage;
+        currentHP -= damage ?? 1;
         UpdatePlayerHPBar();
         if (currentHP <= 0)
             PlayerDeath();
@@ -176,8 +197,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            items[0].Destroy();
             items.RemoveAt(0);
             items.Add(item);
+        }
+
+        Debug.Log($"{playerName} got: ");
+        foreach (var i in items)
+        {
+            Debug.Log(i.Name);
         }
     }
 
@@ -192,5 +220,11 @@ public class PlayerController : MonoBehaviour
         RemoveItem(item);
         Debug.Log(item.Name);
         item.Consume(this, friend);
+    }
+
+    public void InitPlayerName(bool inverse = false)
+    {
+        playerName = inverse ? isPlayer1 ? "Player2" : "Player1"
+                            : isPlayer1 ? "Player1" : "Player2";
     }
 }

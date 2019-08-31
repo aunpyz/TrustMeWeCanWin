@@ -11,6 +11,15 @@ public class BossController : MonoBehaviour
     private bool isBossAttack;
     private float bossCooldownAttackCounter;
     private bool isFaceLeft;
+    public string Facing
+    {
+        get
+        {
+            if (isFaceLeft) return "Player1";
+            else return "Player2";
+        }
+    }
+
     [Header("BloodType")]
     [SerializeField] private GameObject BloodEffect;
     [SerializeField] private GameObject WhiteBloodEffect;
@@ -54,9 +63,12 @@ public class BossController : MonoBehaviour
     [SerializeField] private int maxHPBoss5;
     [SerializeField] private int maxHPBoss6;
     private int BossCount;
+    public AttackHandler p1;
+    public AttackHandler p2;
 
     void Start()
     {
+        ResetAttackHandler();
         BossCount = 1;
         maxBossHP = maxHPBoss1;
         isFaceLeft = true;
@@ -73,23 +85,23 @@ public class BossController : MonoBehaviour
             isBossAttack = true;
             if (isFaceLeft && !thePlayer1.isDeath)
             {
-                BossAttackP1();
+                p1(null);
             }
             else if (!isFaceLeft && !thePlayer2.isDeath)
             {
-                BossAttackP2();
+                p2(null);
             }
             else if (thePlayer1.isDeath && !thePlayer2.isDeath)
             {
                 isFaceLeft = false;
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-                BossAttackP2();
+                p2(null);
             }
             else if (thePlayer2.isDeath && !thePlayer1.isDeath)
             {
                 isFaceLeft = true;
                 transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-                BossAttackP1();
+                p1(null);
             }
             else
             {
@@ -99,18 +111,18 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void BossAttackP1()
+    public void BossAttackP1(int? damage)
     {
         theCamera.CameraShake();
         BossAttackAnimation();
-        thePlayer1.DecreasHP(bossDamage);
+        thePlayer1.DecreasHP(damage ?? bossDamage);
     }
 
-    void BossAttackP2()
+    public void BossAttackP2(int? damage)
     {
         theCamera.CameraShake();
         BossAttackAnimation();
-        thePlayer2.DecreasHP(bossDamage);
+        thePlayer2.DecreasHP(damage ?? bossDamage);
     }
 
     void BossAttackAnimation()
@@ -219,6 +231,11 @@ public class BossController : MonoBehaviour
         }
     }
 
+    public void ResetAttackHandler()
+    {
+        p1 = BossAttackP1;
+        p2 = BossAttackP2;
+    }
 
     void UpdateBossHPBar()
     {
