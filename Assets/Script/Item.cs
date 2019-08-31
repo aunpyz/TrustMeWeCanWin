@@ -4,6 +4,7 @@ public interface IConsumable
 {
     string Name { get; }
     string Description { get; }
+    string Url { get; }
     void Consume(PlayerController self, PlayerController other);
     void Destroy();
 }
@@ -13,11 +14,13 @@ public sealed class Item : MonoBehaviour, IConsumable
 {
     [SerializeField] private string itemName;
     [SerializeField] private string itemDescription;
+    [SerializeField] private string imageUrl;
     public delegate void ItemEffect(PlayerController self, PlayerController other);
     public ItemEffect itemEffect;
 
     public string Name => itemName;
     public string Description => itemDescription;
+    public string Url => imageUrl;
 
     public void Consume(PlayerController self, PlayerController other)
     {
@@ -25,15 +28,16 @@ public sealed class Item : MonoBehaviour, IConsumable
         Destroy(gameObject);
     }
 
-    public void Destroy() 
+    public void Destroy()
     {
         Destroy(gameObject);
     }
 
-    public Item Init(string name = "default", string description = "description")
+    public Item Init(string name = "default", string description = "description", string url = "")
     {
         itemName = name;
         itemDescription = description;
+        imageUrl = url;
         return this;
     }
 

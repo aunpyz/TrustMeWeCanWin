@@ -30,6 +30,7 @@ public class ItemType
 {
     public string name;
     public string description;
+    public string url;
     public Type type;
 }
 
@@ -62,7 +63,8 @@ public class ItemGenerator : MonoBehaviour
     public Item GenerateItem()
     {
         var itemType = itemTypes.Random();
-        Item droppedItem = Instantiate(item).Init(itemType.name, itemType.description);
+        Item droppedItem = Instantiate(item)
+            .Init(itemType.name, itemType.description, itemType.url);
         #region All items' effect
         switch (itemType.type)
         {
