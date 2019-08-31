@@ -8,13 +8,11 @@ public class PlayerController : MonoBehaviour
     public bool isPlayer1;
     public bool isPlayer2;
     private float cooldownAttackCounter;
-    public float cooldownAttackTime;
+    private float delayBoforeAttackTime;
     private float delayBoforeAttackCounter;
     private bool isDelayBeforeAttackCounting;
     private bool isP1Attack;
     private bool isP2Attack;
-    private int currentHP;
-    private int maxHP;
     [Header("MaiKeaw")]
     [SerializeField] private GameObject HPBarUI;
     [SerializeField] private BossController theBoss;
@@ -22,9 +20,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraController theCamera;
     [SerializeField] private Animator P1AttackAnimator;
     [SerializeField] private Animator P2AttackAnimator;
+    [SerializeField] private SpriteRenderer PlayerBody;
+    [SerializeField] private SpriteRenderer PlayerHand;
+    [SerializeField] private GameObject GraveObject;
+
+    [Header("Cheat")]
+    [SerializeField] private int currentHP;
 
     [Header("Player Setting")]
-    [SerializeField] private float delayBoforeAttackTime;
+    [SerializeField] private int maxHP;
+    public float cooldownAttackTime;
     [SerializeField] private int P1Damage;
     [SerializeField] private int P2Damage;
 
@@ -135,11 +140,13 @@ public class PlayerController : MonoBehaviour
         float hp_ratio = (float)currentHP / (float)maxHP;
         if (hp_ratio >= 0)
             HPBarUI.transform.localScale = new Vector3(hp_ratio, 1, 1);
+        else
+            HPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
-    public void DecreasHP(int damage)
+    public void DecreasHP(int bossDamage)
     {
-        currentHP -= 1;
+        currentHP -= bossDamage;
         UpdatePlayerHPBar();
         if (currentHP <= 0)
             PlayerDeath();
@@ -148,6 +155,9 @@ public class PlayerController : MonoBehaviour
     void PlayerDeath()
     {
         isDeath = true;
+        PlayerBody.enabled = false;
+        PlayerHand.enabled = false;
+        GraveObject.SetActive(true);
     }
 
     public void RestartGame()

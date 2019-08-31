@@ -25,8 +25,18 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject BossAvatar4;
     [SerializeField] private GameObject BossAvatar5;
     [SerializeField] private GameObject BossAvatar6;
-
-
+    [SerializeField] private Animator BossAttackAnimation1;
+    [SerializeField] private Animator BossAttackAnimation2;
+    [SerializeField] private Animator BossAttackAnimation3;
+    [SerializeField] private Animator BossAttackAnimation4;
+    [SerializeField] private Animator BossAttackAnimation5;
+    [SerializeField] private Animator BossAttackAnimation6;
+    [SerializeField] private Transform BossBloodSpawnPos1;
+    [SerializeField] private Transform BossBloodSpawnPos2;
+    [SerializeField] private Transform BossBloodSpawnPos3;
+    [SerializeField] private Transform BossBloodSpawnPos4;
+    [SerializeField] private Transform BossBloodSpawnPos5;
+    [SerializeField] private Transform BossBloodSpawnPos6;
 
     [Header("Boss Setting")]
     public float bossCooldownAttackTime;
@@ -86,15 +96,44 @@ public class BossController : MonoBehaviour
     void BossAttackP1()
     {
         theCamera.CameraShake();
+        BossAttackAnimation();
         thePlayer1.DecreasHP(bossDamage);
-        Instantiate(BloodEffect, new Vector3(thePlayer1.transform.position.x + 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
     }
 
     void BossAttackP2()
     {
         theCamera.CameraShake();
+        BossAttackAnimation();
         thePlayer2.DecreasHP(bossDamage);
-        Instantiate(BloodEffect, new Vector3(thePlayer2.transform.position.x - 0.7f, thePlayer1.transform.position.y + 1.5f, BloodEffect.transform.position.z), Quaternion.identity);
+    }
+
+    void BossAttackAnimation()
+    {
+        if (BossCount == 1)
+        {
+            BossAttackAnimation1.SetTrigger("BossAttack");
+            Instantiate(BloodEffect, BossBloodSpawnPos1.position, Quaternion.identity);
+        }
+        else if (BossCount == 2)
+        {
+            Instantiate(BloodEffect, BossBloodSpawnPos2.position, Quaternion.identity);
+        }
+        else if (BossCount == 3)
+        {
+            Instantiate(BloodEffect, BossBloodSpawnPos3.position, Quaternion.identity);
+        }
+        else if (BossCount == 4)
+        {
+            Instantiate(BloodEffect, BossBloodSpawnPos4.position, Quaternion.identity);
+        }
+        else if (BossCount == 5)
+        {
+            Instantiate(BloodEffect, BossBloodSpawnPos5.position, Quaternion.identity);
+        }
+        else if (BossCount == 6)
+        {
+            Instantiate(BloodEffect, BossBloodSpawnPos6.position, Quaternion.identity);
+        }
     }
 
     public void AttackBoss(string playerName, int playerDamage)
@@ -125,6 +164,8 @@ public class BossController : MonoBehaviour
         float hp_ratio = (float)currentBossHP / (float)maxBossHP;
         if (hp_ratio >= 0)
             BossHPBarUI.transform.localScale = new Vector3(hp_ratio, 1, 1);
+        else
+            BossHPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
     void BossDeath(string playerName)
@@ -163,7 +204,12 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Victory");
+            if (!thePlayer1.isDeath && !thePlayer2.isDeath)
+                SceneManager.LoadScene("Victory12");
+            else if (!thePlayer1.isDeath)
+                SceneManager.LoadScene("Victory1");
+            else
+                SceneManager.LoadScene("Victory2");
         }
         Item droppedItem = ItemGenerator.Instance.GenerateItem();
         switch (playerName)
