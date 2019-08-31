@@ -21,7 +21,8 @@ public static class Helper
 
     public static T Random<T>(this List<T> self)
     {
-        return self[rnd.Next(self.Count)];
+        // return self[rnd.Next(self.Count)];
+        return self[7];
     }
 }
 
@@ -70,12 +71,15 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                     (PlayerController self, PlayerController friend) =>
                     {
-                        var originalDamage = self.Damage;
-                        friend.DecreasHP(3);
-                        StartCoroutine(CharacterController.Instance.Buff(
-                            () => { self.Damage = originalDamage * 2; },
-                            6f, () => { self.Damage = originalDamage; }
-                        ));
+                        if (!friend.isDeath)
+                        {
+                            var originalDamage = self.Damage;
+                            friend.DecreasHP(3);
+                            StartCoroutine(CharacterController.Instance.Buff(
+                                () => { self.Damage = originalDamage * 2; },
+                                6f, () => { self.Damage = originalDamage; }
+                            ));
+                        }
                     }
                 );
                 break;
@@ -117,22 +121,25 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                         (PlayerController self, PlayerController friend) =>
                         {
-                            if (self.isPlayer1)
+                            if (!friend.isDeath)
                             {
-                                // friend takes 1 hit to player
-                                boss.p1 = (int? damage) =>
+                                if (self.isPlayer1)
                                 {
-                                    boss.BossAttackP2(null);
-                                    boss.ResetAttackHandler();
-                                };
-                            }
-                            else
-                            {
-                                boss.p2 = (int? damage) =>
+                                    // friend takes 1 hit to player
+                                    boss.p1 = (int? damage) =>
+                                    {
+                                        boss.BossAttackP2(null);
+                                        boss.ResetAttackHandler();
+                                    };
+                                }
+                                else
                                 {
-                                    boss.BossAttackP1(null);
-                                    boss.ResetAttackHandler();
-                                };
+                                    boss.p2 = (int? damage) =>
+                                    {
+                                        boss.BossAttackP1(null);
+                                        boss.ResetAttackHandler();
+                                    };
+                                }
                             }
                         }
                     );
@@ -173,7 +180,7 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                         (PlayerController self, PlayerController friend) =>
                         {
-                            CharacterController.Instance.Buff(
+                            StartCoroutine(CharacterController.Instance.Buff(
                                 () =>
                                 {
                                     self.InitPlayerName(true);
@@ -183,7 +190,7 @@ public class ItemGenerator : MonoBehaviour
                                     self.InitPlayerName();
                                     friend.InitPlayerName();
                                 }
-                            );
+                            ));
                         }
                     );
                 break;

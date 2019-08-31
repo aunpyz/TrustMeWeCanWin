@@ -168,9 +168,9 @@ public class PlayerController : MonoBehaviour
             HPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
-    public void DecreasHP(int bossDamage)
+    public void DecreasHP(int? damage)
     {
-        currentHP -= bossDamage;
+        currentHP -= damage ?? 1;
         UpdatePlayerHPBar();
         if (currentHP <= 0)
             PlayerDeath();
@@ -220,6 +220,9 @@ public class PlayerController : MonoBehaviour
 
     public void InitPlayerName(bool inverse = false)
     {
+        Debug.Log(playerName);
+        Debug.Log(inverse);
+        Debug.Log(isPlayer1);
         playerName = inverse ? isPlayer1 ? "Player2" : "Player1"
                             : isPlayer1 ? "Player1" : "Player2";
     }
