@@ -8,6 +8,7 @@ public interface IConsumable
     void Destroy();
 }
 
+[System.Serializable]
 public sealed class Item : MonoBehaviour, IConsumable
 {
     [SerializeField] private string itemName;

@@ -21,8 +21,7 @@ public static class Helper
 
     public static T Random<T>(this List<T> self)
     {
-        // return self[rnd.Next(self.Count)];
-        return self[7];
+        return self[rnd.Next(self.Count)];
     }
 }
 
@@ -172,7 +171,9 @@ public class ItemGenerator : MonoBehaviour
                             const int damage = 3;
                             boss.BossAttackP1(damage);
                             boss.BossAttackP2(damage);
-                            boss.AttackBoss(boss.Facing, damage);
+                            boss.AttackBoss(boss.Facing, damage,
+                                self.isPlayer1 ? self.P1AttackBloodSpawn.position :
+                                                self.P2AttackBloodSpawn.position);
                         }
                     );
                 break;

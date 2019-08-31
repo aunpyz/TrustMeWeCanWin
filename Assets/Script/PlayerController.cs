@@ -13,13 +13,6 @@ public class PlayerController : MonoBehaviour
     private bool isDelayBeforeAttackCounting;
     private bool isP1Attack;
     private bool isP2Attack;
-    private int currentHP;
-    public int CurrentHP
-    {
-        get { return currentHP; }
-        set { currentHP = value > maxHP ? maxHP : value; }
-    }
-    private int maxHP;
     [Header("MaiKeaw")]
     [SerializeField] private GameObject HPBarUI;
     [SerializeField] private BossController theBoss;
@@ -30,11 +23,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer PlayerBody;
     [SerializeField] private SpriteRenderer PlayerHand;
     [SerializeField] private GameObject GraveObject;
-    [SerializeField] private Transform P1AttackBloodSpawn;
-    [SerializeField] private Transform P2AttackBloodSpawn;
+    public Transform P1AttackBloodSpawn;
+    public Transform P2AttackBloodSpawn;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;
+    public int CurrentHP
+    {
+        get { return currentHP; }
+        set { currentHP = value > maxHP ? maxHP : value; }
+    }
 
     [Header("Player Setting")]
     [SerializeField] private int maxHP;
@@ -203,6 +201,12 @@ public class PlayerController : MonoBehaviour
             items.RemoveAt(0);
             items.Add(item);
         }
+
+        Debug.Log($"{playerName} got: ");
+        foreach (var i in items)
+        {
+            Debug.Log(i.Name);
+        }
     }
 
     public void RemoveItem(Item item)
@@ -220,9 +224,6 @@ public class PlayerController : MonoBehaviour
 
     public void InitPlayerName(bool inverse = false)
     {
-        Debug.Log(playerName);
-        Debug.Log(inverse);
-        Debug.Log(isPlayer1);
         playerName = inverse ? isPlayer1 ? "Player2" : "Player1"
                             : isPlayer1 ? "Player1" : "Player2";
     }
