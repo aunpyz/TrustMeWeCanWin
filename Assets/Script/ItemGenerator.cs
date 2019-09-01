@@ -41,6 +41,16 @@ public class ItemGenerator : MonoBehaviour
     public List<ItemType> itemTypes;
     public BossController boss;
 
+    [Header("Item effect")]
+    [SerializeField] private GameObject necroEffect;
+    [SerializeField] private GameObject tradeMateEffect;
+    [SerializeField] private GameObject slowEffect;
+    [SerializeField] private GameObject reflectShieldEffect;
+    [SerializeField] private GameObject hpPotionEffect;
+    [SerializeField] private GameObject divideShieldEffect;
+    [SerializeField] private GameObject stormEffect;
+    [SerializeField] private GameObject confuserEffect;
+
     private static ItemGenerator _instance;
     public static ItemGenerator Instance
     {
@@ -152,8 +162,7 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                     (PlayerController self, PlayerController friend) =>
                     {
-                        self.CurrentHP += 3;
-                        self.UpdatePlayerHPBar();
+                        self.Heal(3);
                     }
                 );
                 break;

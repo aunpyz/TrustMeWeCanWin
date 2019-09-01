@@ -201,6 +201,13 @@ public class PlayerController : MonoBehaviour
             HPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
+    public void Heal(int amount)
+    {
+        CurrentHP += amount;
+        
+        UpdatePlayerHPBar();
+    }
+
     public void DecreasHP(int? damage)
     {
         currentHP -= damage ?? 1;

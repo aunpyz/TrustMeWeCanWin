@@ -86,3 +86,19 @@ MonoBehaviour:
     url: confuse item-01-01
     type: 7
   boss: {fileID: 0}
+  necroEffect: {fileID: 5445392877334536750, guid: a268e1cb3190f455ca3d32e207473e3d,
+    type: 3}
+  tradeMateEffect: {fileID: 5445392877334536750, guid: 7179fe61827e8fcbdb9c5dd9dd978e42,
+    type: 3}
+  slowEffect: {fileID: 5445392877334536750, guid: 8b01d0ddc560604c7897d3184a53a101,
+    type: 3}
+  reflectShieldEffect: {fileID: 5445392877334536750, guid: b47fb1f8113401fc9811e0a7e167218c,
+    type: 3}
+  hpPotionEffect: {fileID: 5445392877334536750, guid: 5882e194c3501b7edbfb68c67dd976ad,
+    type: 3}
+  divideShieldEffect: {fileID: 5445392877334536750, guid: fe69cab123f7f194db25e7f8ace3fdb1,
+    type: 3}
+  stormEffect: {fileID: 5445392877334536750, guid: f8407587fecfe6ec386a5eb34fa6de1d,
+    type: 3}
+  confuserEffect: {fileID: 5445392877334536750, guid: 9473b81234292d053aebfa906b7e8670,
+    type: 3}
