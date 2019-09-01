@@ -24,6 +24,7 @@ public class LevelController : MonoBehaviour
     void Update()
     {
         if (!isVictory)
+        {
             if (!thePlayer1.isStart && !thePlayer2.isStart)
             {
                 if (Input.anyKey)
@@ -32,6 +33,16 @@ public class LevelController : MonoBehaviour
                         StartGame();
                     }
             }
+            if (Input.anyKey)
+            {
+                if (Input.GetButtonDown("Exit"))
+                {
+                    Exite();
+                }
+                if (Input.GetButtonDown("Guild"))
+                    OpenInstruction();
+            }
+        }
 
         if (!isVictory)
             if (thePlayer1.isDeath && thePlayer2.isDeath && !isWaitForRespawn)
