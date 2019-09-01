@@ -86,7 +86,10 @@ public class ItemGenerator : MonoBehaviour
                         if (!friend.isDeath)
                         {
                             var originalDamage = self.Damage;
+
                             friend.DecreasHP(3);
+                            friend.Effect(itemType.type);
+
                             StartCoroutine(CharacterController.Instance.Buff(
                                 () => { self.Damage = originalDamage * 2; },
                                 6f, () => { self.Damage = originalDamage; }
@@ -105,6 +108,9 @@ public class ItemGenerator : MonoBehaviour
                                 self.CurrentHP = friend.CurrentHP;
                                 friend.CurrentHP = playerHp;
 
+                                self.Effect(itemType.type);
+                                friend.Effect(itemType.type);
+
                                 self.UpdatePlayerHPBar();
                                 friend.UpdatePlayerHPBar();
                             }
@@ -117,6 +123,10 @@ public class ItemGenerator : MonoBehaviour
                         {
                             var friendCooldown = friend.cooldownAttackTime;
                             var bossCooldown = boss.bossCooldownAttackTime;
+
+                            friend.Effect(itemType.type);
+                            boss.Effect(itemType.type);
+
                             StartCoroutine(CharacterController.Instance.Buff(() =>
                             {
                                 friend.cooldownAttackTime *= 3;
@@ -135,6 +145,8 @@ public class ItemGenerator : MonoBehaviour
                         {
                             if (!friend.isDeath)
                             {
+                                self.Effect(itemType.type);
+
                                 if (self.isPlayer1)
                                 {
                                     // friend takes 1 hit to player
@@ -142,6 +154,7 @@ public class ItemGenerator : MonoBehaviour
                                     {
                                         boss.BossAttackP2(null);
                                         self.P1AttackBoss();
+                                        self.Effect(itemType.type);
                                         boss.ResetAttackHandler();
                                     };
                                 }
@@ -151,6 +164,7 @@ public class ItemGenerator : MonoBehaviour
                                     {
                                         boss.BossAttackP1(null);
                                         self.P2AttackBoss();
+                                        self.Effect(itemType.type);
                                         boss.ResetAttackHandler();
                                     };
                                 }
@@ -162,7 +176,7 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                     (PlayerController self, PlayerController friend) =>
                     {
-                        self.Heal(3);
+                        self.Heal(3, itemType.type);
                     }
                 );
                 break;
@@ -170,6 +184,9 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                         (PlayerController self, PlayerController friend) =>
                         {
+                            self.Effect(itemType.type);
+                            friend.Effect(itemType.type);
+
                             var bossDmg = boss.bossDamage;
                             StartCoroutine(CharacterController.Instance.Buff(
                                 () => { boss.bossDamage = 0; },
@@ -182,6 +199,10 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                         (PlayerController self, PlayerController friend) =>
                         {
+                            self.Effect(itemType.type);
+                            friend.Effect(itemType.type);
+                            boss.Effect(itemType.type);
+
                             const int damage = 3;
                             boss.BossAttackP1(damage);
                             boss.BossAttackP2(damage);
@@ -195,6 +216,7 @@ public class ItemGenerator : MonoBehaviour
                 droppedItem.SetEffect(
                         (PlayerController self, PlayerController friend) =>
                         {
+                            boss.Effect(itemType.type);
                             StartCoroutine(CharacterController.Instance.Buff(
                                 () =>
                                 {

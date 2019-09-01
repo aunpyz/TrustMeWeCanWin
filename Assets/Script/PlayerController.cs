@@ -194,6 +194,14 @@ public class PlayerController : MonoBehaviour
         //Instantiate(BloodEffect, P2AttackBloodSpawn.position, Quaternion.identity);
     }
 
+    public void Effect(Type effectType)
+    {
+        var effectPosition = effectTransform.position;
+        Instantiate(ItemGenerator.Instance.ItemEffect(effectType),
+                    new Vector3(effectPosition.x, effectPosition.y, -5),
+                    Quaternion.identity);
+    }
+
     public void UpdatePlayerHPBar()
     {
         float hp_ratio = (float)currentHP / (float)maxHP;
@@ -203,13 +211,10 @@ public class PlayerController : MonoBehaviour
             HPBarUI.transform.localScale = new Vector3(0, 1, 1);
     }
 
-    public void Heal(int amount)
+    public void Heal(int amount, Type effectType)
     {
         CurrentHP += amount;
-        var effectPosition = effectTransform.position;
-        Instantiate(ItemGenerator.Instance.ItemEffect(Type.HPPotion),
-                    new Vector3(effectPosition.x, effectPosition.y, -5),
-                    Quaternion.identity);
+        Effect(effectType);
         UpdatePlayerHPBar();
     }
 

@@ -310,6 +310,14 @@ public class BossController : MonoBehaviour
         p2 = BossAttackP2;
     }
 
+    public void Effect(Type effectType)
+    {
+        var effectPosition = effectTransform.position;
+        Instantiate(ItemGenerator.Instance.ItemEffect(effectType),
+                    new Vector3(effectPosition.x, effectPosition.y, -5),
+                    Quaternion.identity);
+    }
+
     void UpdateBossHPBar()
     {
         BossHPText.text = "" + currentBossHP;
