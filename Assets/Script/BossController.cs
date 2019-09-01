@@ -55,6 +55,9 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform BossBloodSpawnPos4;
     [SerializeField] private Transform BossBloodSpawnPos5;
     [SerializeField] private Transform BossBloodSpawnPos6;
+    [SerializeField] private AudioSource BossAttackSound1;
+    [SerializeField] private AudioSource BossAttackSound2;
+    [SerializeField] private AudioSource BossAttackSound3;
 
     [HideInInspector]
     public int bossDamage;
@@ -84,6 +87,7 @@ public class BossController : MonoBehaviour
     private int BossCount;
     public AttackHandler p1;
     public AttackHandler p2;
+
 
     void Start()
     {
@@ -143,6 +147,7 @@ public class BossController : MonoBehaviour
     public void BossAttackP1(int? damage)
     {
         theCamera.CameraShake();
+        BossAttackSound();
         BossAttackAnimation();
         thePlayer1.P1AttackAnimator.SetTrigger("Attacked");
         thePlayer1.DecreasHP(damage ?? bossDamage);
@@ -151,9 +156,26 @@ public class BossController : MonoBehaviour
     public void BossAttackP2(int? damage)
     {
         theCamera.CameraShake();
+        BossAttackSound();
         BossAttackAnimation();
         thePlayer2.P2AttackAnimator.SetTrigger("Attacked");
         thePlayer2.DecreasHP(damage ?? bossDamage);
+    }
+
+    void BossAttackSound()
+    {
+        if (BossCount == 1 || BossCount == 2 || BossCount == 4)
+        {
+            BossAttackSound1.Play();
+        }
+        else if (BossCount == 5)
+        {
+            BossAttackSound3.Play();
+        }
+        else
+        {
+            BossAttackSound2.Play();
+        }
     }
 
     void BossAttackAnimation()

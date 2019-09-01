@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject GraveObject;
     public Transform P1AttackBloodSpawn;
     public Transform P2AttackBloodSpawn;
-    [SerializeField] AudioSource AttackSound;
-    [SerializeField] AudioSource AttackSound2;
+    [SerializeField] private AudioSource AttackSound;
+    [SerializeField] private AudioSource AttackSound2;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;

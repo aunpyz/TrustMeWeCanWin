@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject StartButton;
     [SerializeField] private GameObject RestartButton;
     private bool isWaitForRespawn;
+    public bool isVictory;
 
     void Start()
     {
@@ -18,20 +19,22 @@ public class LevelController : MonoBehaviour
 
     void Update()
     {
-        if (!thePlayer1.isStart && !thePlayer2.isStart)
-        {
-            if (Input.anyKey)
-                if (Input.GetButtonDown("Start"))
-                {
-                    StartGame();
-                }
-        }
+        if (!isVictory)
+            if (!thePlayer1.isStart && !thePlayer2.isStart)
+            {
+                if (Input.anyKey)
+                    if (Input.GetButtonDown("Start"))
+                    {
+                        StartGame();
+                    }
+            }
 
-        if (thePlayer1.isDeath && thePlayer2.isDeath && !isWaitForRespawn)
-        {
-            isWaitForRespawn = true;
-            RestartButton.SetActive(true);
-        }
+        if (!isVictory)
+            if (thePlayer1.isDeath && thePlayer2.isDeath && !isWaitForRespawn)
+            {
+                isWaitForRespawn = true;
+                RestartButton.SetActive(true);
+            }
     }
 
     public void StartGame()
