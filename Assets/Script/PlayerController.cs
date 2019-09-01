@@ -206,7 +206,10 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         CurrentHP += amount;
-
+        var effectPosition = effectTransform.position;
+        Instantiate(ItemGenerator.Instance.ItemEffect(Type.HPPotion),
+                    new Vector3(effectPosition.x, effectPosition.y, -5),
+                    Quaternion.identity);
         UpdatePlayerHPBar();
     }
 

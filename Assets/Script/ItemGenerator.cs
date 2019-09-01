@@ -213,4 +213,29 @@ public class ItemGenerator : MonoBehaviour
         #endregion
         return droppedItem;
     }
+
+    public GameObject ItemEffect(Type type)
+    {
+        switch (type)
+        {
+            case Type.Necro:
+                return necroEffect;
+            case Type.TradeMate:
+                return tradeMateEffect;
+            case Type.Slow:
+                return slowEffect;
+            case Type.ReflectShield:
+                return reflectShieldEffect;
+            case Type.HPPotion:
+                return hpPotionEffect;
+            case Type.DivideShield:
+                return divideShieldEffect;
+            case Type.Storm:
+                return stormEffect;
+            case Type.Confuser:
+                return confuserEffect;
+            default:
+                return null;
+        }
+    }
 }
