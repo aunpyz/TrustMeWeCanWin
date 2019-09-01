@@ -1511,6 +1511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBossAttack: 0
+  effectTransform: {fileID: 7476410647774627876}
   BloodEffect: {fileID: 1273763612758096013, guid: 0f970636fd05f814793ea73f6ce94e68,
     type: 3}
   WhiteBloodEffect: {fileID: 1273763612758096013, guid: 82c20542a497afa4a9d78d3f575d976f,

@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Transform P2AttackBloodSpawn;
     [SerializeField] private AudioSource AttackSound;
     [SerializeField] private AudioSource AttackSound2;
+    [SerializeField] private GameObject BeforeCombatSound;
 
     [Header("Cheat")]
     [SerializeField] private int currentHP;
@@ -238,7 +239,10 @@ public class PlayerController : MonoBehaviour
 
     public void RestartGame()
     {
+        if (GameObject.FindObjectOfType<BGMSound>())
+            Destroy(GameObject.FindObjectOfType<BGMSound>().gameObject);
         PlayerPrefs.DeleteAll();
+        Instantiate(BeforeCombatSound, transform.position, Quaternion.identity);
         SceneManager.LoadScene("Main");
     }
 

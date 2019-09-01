@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4060421
 Transform:
   m_ObjectHideFlags: 0
@@ -162,10 +162,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1d1c75da314d1f94e94654e4f717e38f, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2073,10 +2073,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 808b1481b885f1b45ab1e61f26058046, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5671,6 +5671,9 @@ MonoBehaviour:
   StartButton: {fileID: 1627329054}
   RestartButton: {fileID: 1082267682}
   InstructionObject: {fileID: 1895361621}
+  CombatSound: {fileID: 480939255}
+  BeforeCombatSound: {fileID: 92666141610819670, guid: b2348918fef39d5438052aa7ad6f4c5e,
+    type: 3}
   isVictory: 0
   theBoss: {fileID: 54826002}
 --- !u!4 &1457572975
@@ -7528,16 +7531,6 @@ PrefabInstance:
       propertyPath: BossAttackSound3
       value: 
       objectReference: {fileID: 552638185}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss0Name
-      value: Training
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: effectTransform
-      value: 
-      objectReference: {fileID: 5144435477517234034}
     - target: {fileID: 5144435477462416229, guid: ff6a21965a35cd5489c453c71620a3e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7595,12 +7588,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6a21965a35cd5489c453c71620a3e4, type: 3}
---- !u!4 &5144435477517234034 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7476410647774627876, guid: ff6a21965a35cd5489c453c71620a3e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5144435477517234033}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5470267556165223405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7648,6 +7635,12 @@ PrefabInstance:
       propertyPath: friend
       value: 
       objectReference: {fileID: 578790486}
+    - target: {fileID: 5470267556655248119, guid: f22075033335a9442b0a80e74d7e1c50,
+        type: 3}
+      propertyPath: BeforeCombatSound
+      value: 
+      objectReference: {fileID: 92666141610819670, guid: b2348918fef39d5438052aa7ad6f4c5e,
+        type: 3}
     - target: {fileID: 5470267556655248116, guid: f22075033335a9442b0a80e74d7e1c50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7831,6 +7824,12 @@ PrefabInstance:
       propertyPath: friend
       value: 
       objectReference: {fileID: 592785690}
+    - target: {fileID: 7128306345658538765, guid: dbd47c6f2f317814cb891af945f2820b,
+        type: 3}
+      propertyPath: BeforeCombatSound
+      value: 
+      objectReference: {fileID: 92666141610819670, guid: b2348918fef39d5438052aa7ad6f4c5e,
+        type: 3}
     - target: {fileID: 7128306345658538766, guid: dbd47c6f2f317814cb891af945f2820b,
         type: 3}
       propertyPath: m_LocalPosition.x

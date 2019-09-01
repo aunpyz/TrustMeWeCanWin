@@ -213,19 +213,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6424946824142601054, guid: 8b000e8109f2b024d8be94dc649f904c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 301636180, guid: 8b000e8109f2b024d8be94dc649f904c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1830624762, guid: 8b000e8109f2b024d8be94dc649f904c, type: 3}
-      propertyPath: isVictory
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b000e8109f2b024d8be94dc649f904c, type: 3}
 --- !u!1 &343594800
@@ -563,6 +550,75 @@ Transform:
   m_Father: {fileID: 5470267557874843473}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+--- !u!1001 &1721751368959346295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1721751368238360332, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_Name
+      value: VictorySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.8277197
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.427263
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.202559
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721751368238360330, guid: 4478f8585e0f2814abcc325ed93e816a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4478f8585e0f2814abcc325ed93e816a, type: 3}
 --- !u!1 &5144435477114636233
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBossAttack: 0
+  effectTransform: {fileID: 0}
   BloodEffect: {fileID: 0}
   WhiteBloodEffect: {fileID: 0}
   BrownBloodEffect: {fileID: 0}
@@ -663,18 +720,21 @@ MonoBehaviour:
   RainbowBloodEffect: {fileID: 0}
   YellowBloodEffect: {fileID: 0}
   GreyBloodEffect: {fileID: 0}
+  WheatBloodEffect: {fileID: 0}
   BossHPBarUI: {fileID: 0}
   BossHPText: {fileID: 0}
   BossCountText: {fileID: 0}
   theCamera: {fileID: 0}
   thePlayer1: {fileID: 0}
   thePlayer2: {fileID: 0}
+  BossAvatar0: {fileID: 0}
   BossAvatar1: {fileID: 0}
   BossAvatar2: {fileID: 5144435477114636233}
   BossAvatar3: {fileID: 0}
   BossAvatar4: {fileID: 0}
   BossAvatar5: {fileID: 0}
   BossAvatar6: {fileID: 0}
+  BossAttackAnimation0: {fileID: 0}
   BossAttackAnimation1: {fileID: 0}
   BossAttackAnimation2: {fileID: 0}
   BossAttackAnimation3: {fileID: 0}
@@ -875,9 +935,13 @@ MonoBehaviour:
   P1Damage: 0
   P2Damage: 0
   isDeath: 0
+  itemDialogs: []
+  deadDialogs: []
+  deadDialogText: {fileID: 0}
   itemContainer: {fileID: 0}
   friend: {fileID: 0}
   playerName: 
+  effectTransform: {fileID: 0}
 --- !u!1 &5470267557874843487
 GameObject:
   m_ObjectHideFlags: 0

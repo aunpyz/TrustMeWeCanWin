@@ -587,6 +587,12 @@ MonoBehaviour:
   thePlayer2: {fileID: 0}
   StartButton: {fileID: 0}
   RestartButton: {fileID: 0}
+  InstructionObject: {fileID: 0}
+  CombatSound: {fileID: 0}
+  BeforeCombatSound: {fileID: 92666141610819670, guid: b2348918fef39d5438052aa7ad6f4c5e,
+    type: 3}
+  isVictory: 1
+  theBoss: {fileID: 0}
 --- !u!1 &6424946824142601049
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 6424946824142601049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.2627768, y: -1.7976373, z: -2.863063}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 6424946825958685976}
   - {fileID: 6424946825264499846}

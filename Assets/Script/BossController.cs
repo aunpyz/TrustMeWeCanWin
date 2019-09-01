@@ -414,6 +414,7 @@ public class BossController : MonoBehaviour
         }
         else
         {
+            Destroy(GameObject.Find("BGM"));
             if (!thePlayer1.isDeath && !thePlayer2.isDeath)
                 SceneManager.LoadScene("Victory12");
             else if (!thePlayer1.isDeath)

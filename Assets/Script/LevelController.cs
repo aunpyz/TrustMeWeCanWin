@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject StartButton;
     [SerializeField] private GameObject RestartButton;
     [SerializeField] private GameObject InstructionObject;
+    [SerializeField] private AudioSource CombatSound;
+    [SerializeField] private GameObject BeforeCombatSound;
     private bool isWaitForRespawn;
     public bool isVictory;
     [SerializeField] private BossController theBoss;
@@ -41,6 +43,9 @@ public class LevelController : MonoBehaviour
 
     public void StartGame()
     {
+        if (GameObject.FindObjectOfType<BGMSound>())
+            Destroy(GameObject.FindObjectOfType<BGMSound>().gameObject);
+        CombatSound.Play();
         theBoss.BossDeath("Player1");
         thePlayer1.isStart = true;
         thePlayer2.isStart = true;
@@ -49,6 +54,9 @@ public class LevelController : MonoBehaviour
 
     public void RestartGame()
     {
+        if (GameObject.FindObjectOfType<BGMSound>())
+            Destroy(GameObject.FindObjectOfType<BGMSound>().gameObject);
+        Instantiate(BeforeCombatSound, transform.position, Quaternion.identity);
         SceneManager.LoadScene("Main");
     }
 
