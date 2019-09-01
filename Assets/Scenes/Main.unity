@@ -5123,6 +5123,8 @@ MonoBehaviour:
   thePlayer2: {fileID: 578790486}
   StartButton: {fileID: 1627329054}
   RestartButton: {fileID: 1082267682}
+  isVictory: 0
+  theBoss: {fileID: 54826002}
 --- !u!4 &1457572975
 Transform:
   m_ObjectHideFlags: 0
@@ -6317,63 +6319,6 @@ PrefabInstance:
       objectReference: {fileID: 578790486}
     - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
         type: 3}
-      propertyPath: bossDamage5
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: bossDamage6
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss0Name
-      value: Crown
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss1Name
-      value: Kala
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss2Name
-      value: The Heeb
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss3Name
-      value: The Avocado Kicker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss4Name
-      value: The Head Cut Knight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss5Name
-      value: Smile Face
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: boss6Name
-      value: The Candy King
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: GreyBloodEffect
-      value: 
-      objectReference: {fileID: 1273763612758096013, guid: bafc103f0f98a944189c2b1652f39060,
-        type: 3}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: YellowBloodEffect
-      value: 
-      objectReference: {fileID: 1273763612758096013, guid: 8e5a87c444be63a4d89ac2de1caa7eed,
-        type: 3}
-    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
       propertyPath: BossAttackSound1
       value: 
       objectReference: {fileID: 1097993850}
@@ -6387,6 +6332,11 @@ PrefabInstance:
       propertyPath: BossAttackSound3
       value: 
       objectReference: {fileID: 552638185}
+    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
+        type: 3}
+      propertyPath: boss0Name
+      value: Training
+      objectReference: {fileID: 0}
     - target: {fileID: 5144435477462416229, guid: ff6a21965a35cd5489c453c71620a3e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6442,51 +6392,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5144435476742464522, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931704946795387815, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931704946795387815, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4019068602729338022, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4019068602729338022, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568355946254369824, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568355946254369824, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603610496995569912, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603610496995569912, guid: ff6a21965a35cd5489c453c71620a3e4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.63
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6a21965a35cd5489c453c71620a3e4, type: 3}
 --- !u!1001 &5470267556165223405
@@ -6539,7 +6444,7 @@ PrefabInstance:
     - target: {fileID: 5470267556655248116, guid: f22075033335a9442b0a80e74d7e1c50,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 5470267556655248116, guid: f22075033335a9442b0a80e74d7e1c50,
         type: 3}
@@ -6722,7 +6627,7 @@ PrefabInstance:
     - target: {fileID: 7128306345658538766, guid: dbd47c6f2f317814cb891af945f2820b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 7128306345658538766, guid: dbd47c6f2f317814cb891af945f2820b,
         type: 3}

@@ -29,6 +29,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject RainbowBloodEffect;
     [SerializeField] private GameObject YellowBloodEffect;
     [SerializeField] private GameObject GreyBloodEffect;
+    [SerializeField] private GameObject WheatBloodEffect;
 
     [Header("BossComp")]
     [SerializeField] private GameObject BossHPBarUI;
@@ -37,12 +38,14 @@ public class BossController : MonoBehaviour
     [SerializeField] private CameraController theCamera;
     [SerializeField] private PlayerController thePlayer1;
     [SerializeField] private PlayerController thePlayer2;
+    [SerializeField] private GameObject BossAvatar0;
     [SerializeField] private GameObject BossAvatar1;
     [SerializeField] private GameObject BossAvatar2;
     [SerializeField] private GameObject BossAvatar3;
     [SerializeField] private GameObject BossAvatar4;
     [SerializeField] private GameObject BossAvatar5;
     [SerializeField] private GameObject BossAvatar6;
+    [SerializeField] private Animator BossAttackAnimation0;
     [SerializeField] private Animator BossAttackAnimation1;
     [SerializeField] private Animator BossAttackAnimation2;
     [SerializeField] private Animator BossAttackAnimation3;
@@ -93,8 +96,8 @@ public class BossController : MonoBehaviour
     {
         bossDamage = bossDamage1;
         ResetAttackHandler();
-        BossCount = 1;
-        maxBossHP = maxHPBoss1;
+        BossCount = 0;
+        maxBossHP = 9999;
         isFaceLeft = true;
         BossReset();
     }
@@ -214,7 +217,8 @@ public class BossController : MonoBehaviour
 
     public void AttackBoss(string playerName, int playerDamage, Vector3 bloodPos)
     {
-        currentBossHP -= playerDamage;
+        if (BossCount != 0)
+            currentBossHP -= playerDamage;
         if (currentBossHP <= 0)
             BossDeath(playerName);
         else
@@ -237,7 +241,11 @@ public class BossController : MonoBehaviour
 
     void BossBleed(Vector3 bloodPos)
     {
-        if (BossCount == 1)
+        if (BossCount == 0)
+        {
+            Instantiate(WheatBloodEffect, bloodPos, Quaternion.identity);
+        }
+        else if (BossCount == 1)
         {
             Instantiate(WhiteBloodEffect, bloodPos, Quaternion.identity);
         }
@@ -265,7 +273,11 @@ public class BossController : MonoBehaviour
 
     void BossAttackedAnimation()
     {
-        if (BossCount == 1)
+        if (BossCount == 0)
+        {
+            BossAttackAnimation0.SetTrigger("Attacked");
+        }
+        else if (BossCount == 1)
         {
             BossAttackAnimation1.SetTrigger("Attacked");
         }
@@ -311,7 +323,11 @@ public class BossController : MonoBehaviour
 
     void UpdateBossName()
     {
-        if (BossCount == 1)
+        if (BossCount == 0)
+        {
+            BossCountText.text = boss0Name;
+        }
+        else if (BossCount == 1)
         {
             BossCountText.text = boss1Name;
         }
@@ -341,8 +357,9 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void BossDeath(string playerName)
+    public void BossDeath(string playerName)
     {
+        BossAvatar0.SetActive(false);
         BossAvatar1.SetActive(false);
         BossAvatar2.SetActive(false);
         BossAvatar3.SetActive(false);
@@ -350,7 +367,13 @@ public class BossController : MonoBehaviour
         BossAvatar5.SetActive(false);
         BossAvatar6.SetActive(false);
         BossCount++;
-        if (BossCount == 2)
+        if (BossCount == 1)
+        {
+            BossAvatar1.SetActive(true);
+            maxBossHP = maxHPBoss1;
+            bossDamage = bossDamage1;
+        }
+        else if (BossCount == 2)
         {
             BossAvatar2.SetActive(true);
             maxBossHP = maxHPBoss2;
@@ -389,15 +412,19 @@ public class BossController : MonoBehaviour
             else
                 SceneManager.LoadScene("Victory2");
         }
-        Item droppedItem = ItemGenerator.Instance.GenerateItem();
-        switch (playerName)
+
+        if (thePlayer1.isStart || thePlayer2.isStart)
         {
-            case "Player1":
-                thePlayer1.AddItem(droppedItem);
-                break;
-            case "Player2":
-                thePlayer2.AddItem(droppedItem);
-                break;
+            Item droppedItem = ItemGenerator.Instance.GenerateItem();
+            switch (playerName)
+            {
+                case "Player1":
+                    thePlayer1.AddItem(droppedItem);
+                    break;
+                case "Player2":
+                    thePlayer2.AddItem(droppedItem);
+                    break;
+            }
         }
         BossReset();
     }

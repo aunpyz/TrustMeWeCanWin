@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private GameObject RestartButton;
     private bool isWaitForRespawn;
     public bool isVictory;
+    [SerializeField] private BossController theBoss;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class LevelController : MonoBehaviour
 
     public void StartGame()
     {
+        theBoss.BossDeath("Player1");
         thePlayer1.isStart = true;
         thePlayer2.isStart = true;
         StartButton.SetActive(false);

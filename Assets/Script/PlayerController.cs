@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         #region   //Controller
-        if (Input.anyKey && isStart)
+        if (Input.anyKey)
         {
             if (isPlayer1 && !isDeath)
             {

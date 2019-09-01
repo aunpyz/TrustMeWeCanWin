@@ -80,6 +80,86 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1525944180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525944181}
+  - component: {fileID: 1525944182}
+  m_Layer: 0
+  m_Name: B02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1525944181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525944180}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 316183980537271504}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1525944182
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525944180}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1d0c98d83c9fc8941804585e0e52b4f3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.94, y: 3.82}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &19931391020487462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5144435476976101251
 Transform:
   m_ObjectHideFlags: 0
@@ -1399,6 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e1d066f767a784d9056de3a0d4f877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBossAttack: 0
   BloodEffect: {fileID: 1273763612758096013, guid: 0f970636fd05f814793ea73f6ce94e68,
     type: 3}
   WhiteBloodEffect: {fileID: 1273763612758096013, guid: 82c20542a497afa4a9d78d3f575d976f,
@@ -1409,18 +1490,26 @@ MonoBehaviour:
     type: 3}
   RainbowBloodEffect: {fileID: 1273763612758096013, guid: df5fa9b608630c34fbde30d7c323dd15,
     type: 3}
+  YellowBloodEffect: {fileID: 1273763612758096013, guid: 8e5a87c444be63a4d89ac2de1caa7eed,
+    type: 3}
+  GreyBloodEffect: {fileID: 1273763612758096013, guid: bafc103f0f98a944189c2b1652f39060,
+    type: 3}
+  WheatBloodEffect: {fileID: 1273763612758096013, guid: 83071d854192f014787c72e21dae7cb5,
+    type: 3}
   BossHPBarUI: {fileID: 0}
   BossHPText: {fileID: 0}
   BossCountText: {fileID: 0}
   theCamera: {fileID: 0}
   thePlayer1: {fileID: 0}
   thePlayer2: {fileID: 0}
+  BossAvatar0: {fileID: 8487392430854167823}
   BossAvatar1: {fileID: 5144435476976101248}
   BossAvatar2: {fileID: 5144435476742464522}
   BossAvatar3: {fileID: 8220264349240356019}
   BossAvatar4: {fileID: 2638147025264832366}
   BossAvatar5: {fileID: 19931391020487462}
   BossAvatar6: {fileID: 2485825473016454691}
+  BossAttackAnimation0: {fileID: 4248224276647824290}
   BossAttackAnimation1: {fileID: 783245145}
   BossAttackAnimation2: {fileID: 5144435477517234037}
   BossAttackAnimation3: {fileID: 1285879151815550289}
@@ -1433,6 +1522,9 @@ MonoBehaviour:
   BossBloodSpawnPos4: {fileID: 4019068602729338022}
   BossBloodSpawnPos5: {fileID: 4568355946254369824}
   BossBloodSpawnPos6: {fileID: 6286459532035937549}
+  BossAttackSound1: {fileID: 0}
+  BossAttackSound2: {fileID: 0}
+  BossAttackSound3: {fileID: 0}
   bossDamage: 1
   bossCooldownAttackTime: 2
   maxHPBoss1: 20
@@ -1445,8 +1537,15 @@ MonoBehaviour:
   bossDamage2: 1
   bossDamage3: 1
   bossDamage4: 1
-  bossDamage5: 2
-  bossDamage6: 2
+  bossDamage5: 1
+  bossDamage6: 1
+  boss0Name: Crown
+  boss1Name: Kala
+  boss2Name: The Heeb
+  boss3Name: The Avocado Kicker
+  boss4Name: The Head Cut Knight
+  boss5Name: Smile Face
+  boss6Name: The Candy King
 --- !u!61 &273294006
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1578,7 +1677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6370122389110692732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9499998, y: -0.55999994, z: 0}
+  m_LocalPosition: {x: -2.06, y: -0.49, z: 0}
   m_LocalScale: {x: 3, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 9128397467843155108}
@@ -1900,7 +1999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8013932846724373210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9499998, y: -0.55999994, z: 0}
+  m_LocalPosition: {x: -2.08, y: -0.21, z: 0}
   m_LocalScale: {x: 3, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 751088914278876473}
@@ -2155,7 +2254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &316183980537271504
 Transform:
   m_ObjectHideFlags: 0
@@ -2169,6 +2268,7 @@ Transform:
   m_Children:
   - {fileID: 3532588588185292483}
   - {fileID: 4603610496995569912}
+  - {fileID: 1525944181}
   m_Father: {fileID: 5144435477359724803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2231,7 +2331,7 @@ Animator:
   m_GameObject: {fileID: 8487392430854167823}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd09542cca39be74585b6836e60a243b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2346,7 +2446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8943309493104085455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.04, y: -0.12, z: 0}
+  m_LocalPosition: {x: -2.55, y: -0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 316183980537271504}
@@ -2426,7 +2526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8962119719071350345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9499998, y: -0.55999994, z: 0}
+  m_LocalPosition: {x: -2.02, y: -0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6900456886865620172}
