@@ -45,35 +45,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 7974785058718719802, guid: 3353568a987ebf95791e5f09b378a3b2, type: 3}
   itemTypes:
-  - name: Necro
+  - name: Necromancer
+    shortName: Necro
     description: Sacrifice friend's hp for a heavy damage for 6 seconds
     url: Necro item-01
     type: 0
-  - name: Trade Mate
+  - name: HP Swap
+    shortName: Swap
     description: Swap your hp with friend's
     url: trade item-01-01
     type: 1
-  - name: Slow
+  - name: Slow Down
+    shortName: Slow
     description: Slow down boss and friend's hit rate
     url: slow item-02-01
     type: 2
   - name: Reflect Shield
+    shortName: Reflect
     description: Reflect the damage you received to friend and boss
     url: reflect item-01-01
     type: 3
-  - name: HP Potion
+  - name: Potion
+    shortName: Potion
     description: Heal your hp
     url: potion-item-02-01
     type: 4
   - name: Divide Shield
+    shortName: Shield
     description: Protect you and your friend from any damages for 6 seconds
     url: divine item-02-01
     type: 5
   - name: Storm
+    shortName: Storm
     description: Damage everyone
     url: storem item-01
     type: 6
-  - name: Confuser
+  - name: Confuse
+    shortName: Confuse
     description: Confuse the enemy to face backward when hit
     url: confuse item-01-01
     type: 7

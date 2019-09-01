@@ -11,7 +11,7 @@ public class ItemSlot : MonoBehaviour
 
     public void Assign(Item item, bool selected)
     {
-        itemName.text = item?.Name ?? "";
+        itemName.text = item?.ShortName ?? "";
         if (item == null)
         {
             itemImage.gameObject.SetActive(false);

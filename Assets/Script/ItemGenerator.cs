@@ -29,6 +29,7 @@ public static class Helper
 public class ItemType
 {
     public string name;
+    public string shortName;
     public string description;
     public string url;
     public Type type;
@@ -64,7 +65,7 @@ public class ItemGenerator : MonoBehaviour
     {
         var itemType = itemTypes.Random();
         Item droppedItem = Instantiate(item)
-            .Init(itemType.name, itemType.description, itemType.url);
+            .Init(itemType.name, itemType.shortName, itemType.description, itemType.url);
         #region All items' effect
         switch (itemType.type)
         {
@@ -175,7 +176,7 @@ public class ItemGenerator : MonoBehaviour
                             const int damage = 3;
                             boss.BossAttackP1(damage);
                             boss.BossAttackP2(damage);
-                            boss.AttackBoss(boss.Facing, damage,
+                            boss.AttackBoss(boss.Facing, damage * 5,
                                 self.isPlayer1 ? self.P1AttackBloodSpawn.position :
                                                 self.P2AttackBloodSpawn.position);
                         }

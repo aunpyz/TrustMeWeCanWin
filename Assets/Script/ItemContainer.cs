@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemContainer : MonoBehaviour
 {
+    [SerializeField] private Animator LeftDialogAnimation;
     public List<Item> items = new List<Item>(3);
     public ItemSlot[] slots = new ItemSlot[3];
     public Text textDialog;
@@ -21,7 +22,6 @@ public class ItemContainer : MonoBehaviour
     private void Start()
     {
         AssignItemsData();
-        textDialog.transform.parent.gameObject.SetActive(false);
     }
 
     public void MoveSelected()
@@ -77,10 +77,11 @@ public class ItemContainer : MonoBehaviour
 
     public IEnumerator ShowItemDialog(string content)
     {
-        textDialog.transform.parent.gameObject.SetActive(true);
         textDialog.text = content;
-        yield return new WaitForSeconds(3f);
-        textDialog.transform.parent.gameObject.SetActive(false);
+        LeftDialogAnimation.SetTrigger("Show");
+        yield return new WaitForSeconds(5f);
+        LeftDialogAnimation.SetTrigger("Hide");
+        yield return new WaitForSeconds(2f);
     }
 
     private void AssignItemsData()

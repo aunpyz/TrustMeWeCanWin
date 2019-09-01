@@ -269,9 +269,9 @@ public class PlayerController : MonoBehaviour
         {
             deadDialogText.transform.parent.gameObject.SetActive(true);
             deadDialogText.text = deadDialogs.Random();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             deadDialogText.transform.parent.gameObject.SetActive(false);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
         }
     }
 }

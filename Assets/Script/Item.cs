@@ -3,6 +3,7 @@ using UnityEngine;
 public interface IConsumable
 {
     string Name { get; }
+    string ShortName { get; }
     string Description { get; }
     string Url { get; }
     void Consume(PlayerController self, PlayerController other);
@@ -13,6 +14,7 @@ public interface IConsumable
 public sealed class Item : MonoBehaviour, IConsumable
 {
     [SerializeField] private string itemName;
+    [SerializeField] private string itemShortName;
     [SerializeField] private string itemDescription;
     [SerializeField] private string imageUrl;
     public delegate void ItemEffect(PlayerController self, PlayerController other);
@@ -21,6 +23,7 @@ public sealed class Item : MonoBehaviour, IConsumable
     public string Name => itemName;
     public string Description => itemDescription;
     public string Url => imageUrl;
+    public string ShortName => itemShortName;
 
     public void Consume(PlayerController self, PlayerController other)
     {
@@ -33,9 +36,10 @@ public sealed class Item : MonoBehaviour, IConsumable
         Destroy(gameObject);
     }
 
-    public Item Init(string name = "default", string description = "description", string url = "")
+    public Item Init(string name = "default", string shortName = "default", string description = "description", string url = "")
     {
         itemName = name;
+        itemShortName = shortName;
         itemDescription = description;
         imageUrl = url;
         return this;
