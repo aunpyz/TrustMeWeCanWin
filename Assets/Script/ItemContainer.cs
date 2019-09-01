@@ -79,7 +79,7 @@ public class ItemContainer : MonoBehaviour
     {
         textDialog.text = content;
         LeftDialogAnimation.SetTrigger("Show");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         LeftDialogAnimation.SetTrigger("Hide");
         yield return new WaitForSeconds(2f);
     }

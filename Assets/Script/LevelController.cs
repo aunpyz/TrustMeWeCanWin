@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private PlayerController thePlayer2;
     [SerializeField] private GameObject StartButton;
     [SerializeField] private GameObject RestartButton;
+    [SerializeField] private GameObject InstructionObject;
     private bool isWaitForRespawn;
     public bool isVictory;
     [SerializeField] private BossController theBoss;
@@ -49,5 +50,20 @@ public class LevelController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void CloseInstruction()
+    {
+        InstructionObject.SetActive(false);
+    }
+
+    public void OpenInstruction()
+    {
+        InstructionObject.SetActive(true);
+    }
+
+    public void Exite()
+    {
+        Application.Quit();
     }
 }
