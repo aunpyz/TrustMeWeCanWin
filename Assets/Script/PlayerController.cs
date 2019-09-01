@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerController friend;
     [SerializeField] private string playerName;
 
+    public Transform effectTransform;
+
     void Start()
     {
         InitPlayerName();
@@ -204,7 +206,7 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         CurrentHP += amount;
-        
+
         UpdatePlayerHPBar();
     }
 

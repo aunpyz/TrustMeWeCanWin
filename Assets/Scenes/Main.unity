@@ -6417,6 +6417,11 @@ PrefabInstance:
       propertyPath: boss0Name
       value: Training
       objectReference: {fileID: 0}
+    - target: {fileID: 5144435477462416227, guid: ff6a21965a35cd5489c453c71620a3e4,
+        type: 3}
+      propertyPath: effectTransform
+      value: 
+      objectReference: {fileID: 5144435477517234034}
     - target: {fileID: 5144435477462416229, guid: ff6a21965a35cd5489c453c71620a3e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6474,6 +6479,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6a21965a35cd5489c453c71620a3e4, type: 3}
+--- !u!4 &5144435477517234034 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7476410647774627876, guid: ff6a21965a35cd5489c453c71620a3e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5144435477517234033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5470267556165223405
 PrefabInstance:
   m_ObjectHideFlags: 0

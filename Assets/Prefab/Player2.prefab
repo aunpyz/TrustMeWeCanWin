@@ -400,6 +400,7 @@ MonoBehaviour:
   itemContainer: {fileID: 0}
   friend: {fileID: 0}
   playerName: 
+  effectTransform: {fileID: 1875783128}
 --- !u!61 &999544803
 BoxCollider2D:
   m_ObjectHideFlags: 0

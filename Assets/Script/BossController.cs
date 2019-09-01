@@ -20,6 +20,7 @@ public class BossController : MonoBehaviour
             else return "Player2";
         }
     }
+    public Transform effectTransform;
 
     [Header("BloodType")]
     [SerializeField] private GameObject BloodEffect;
