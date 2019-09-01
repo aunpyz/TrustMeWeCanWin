@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5445392877334536744}
   - component: {fileID: 5445392877334536751}
   m_Layer: 12
-  m_Name: ReflectShieldEffect
+  m_Name: NecroBuffEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.39565724, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -665,8 +665,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0, y: 2, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Position: {x: -0.3627097, y: 2.2331705, z: 0}
+    m_Rotation: {x: -0, y: 0, z: 54.364544}
     m_Scale: {x: 0.7, y: 0.7, z: 0.7}
     placementMode: 2
     m_MeshMaterialIndex: 0
@@ -727,7 +727,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    m_Mesh: {fileID: -2432090755550338912, guid: 84903c68756af9727a36887213375644,
+    m_Mesh: {fileID: -2432090755550338912, guid: c4192246e1477aa509ca53b80610f6fc,
       type: 3}
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
@@ -1041,7 +1041,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.3642044
+          value: 0.3271637
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1050,7 +1050,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.8456764
+          value: 0.8148155
           inSlope: 1
           outSlope: 1
           tangentMode: 0

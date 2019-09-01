@@ -6,6 +6,7 @@ using SRandom = System.Random;
 public enum Type
 {
     Necro,
+    NecroBuff,
     TradeMate,
     Slow,
     ReflectShield,
@@ -43,6 +44,7 @@ public class ItemGenerator : MonoBehaviour
 
     [Header("Item effect")]
     [SerializeField] private GameObject necroEffect;
+    [SerializeField] private GameObject necroBuffEffect;
     [SerializeField] private GameObject tradeMateEffect;
     [SerializeField] private GameObject slowEffect;
     [SerializeField] private GameObject reflectShieldEffect;
@@ -89,6 +91,7 @@ public class ItemGenerator : MonoBehaviour
 
                             friend.DecreasHP(3);
                             friend.Effect(itemType.type);
+                            self.Effect(Type.NecroBuff);
 
                             StartCoroutine(CharacterController.Instance.Buff(
                                 () => { self.Damage = originalDamage * 2; },
@@ -242,6 +245,8 @@ public class ItemGenerator : MonoBehaviour
         {
             case Type.Necro:
                 return necroEffect;
+            case Type.NecroBuff:
+                return necroBuffEffect;
             case Type.TradeMate:
                 return tradeMateEffect;
             case Type.Slow:
