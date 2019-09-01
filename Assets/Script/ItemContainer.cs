@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemContainer : MonoBehaviour
 {
     public List<Item> items = new List<Item>(3);
     public ItemSlot[] slots = new ItemSlot[3];
+    public Text textDialog;
 
     private int currentItemIndex = 0;
     private float itemCooldown = 1f;
@@ -19,6 +21,7 @@ public class ItemContainer : MonoBehaviour
     private void Start()
     {
         AssignItemsData();
+        textDialog.transform.parent.gameObject.SetActive(false);
     }
 
     public void MoveSelected()
@@ -65,6 +68,19 @@ public class ItemContainer : MonoBehaviour
         {
             throw e;
         }
+    }
+
+    public IEnumerator ShowItemDialog(Item item)
+    {
+        yield return ShowItemDialog($"Got {item.Name}");
+    }
+
+    public IEnumerator ShowItemDialog(string content)
+    {
+        textDialog.transform.parent.gameObject.SetActive(true);
+        textDialog.text = content;
+        yield return new WaitForSeconds(3f);
+        textDialog.transform.parent.gameObject.SetActive(false);
     }
 
     private void AssignItemsData()

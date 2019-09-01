@@ -370,8 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13f9923d6da53d40b12344367aa8ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStart: 0
   isPlayer1: 1
   isPlayer2: 0
+  delayBoforeAttackTime: 0.1
   HPBarUI: {fileID: 0}
   theBoss: {fileID: 0}
   BloodEffect: {fileID: 1273763612758096013, guid: 0f970636fd05f814793ea73f6ce94e68,
@@ -384,14 +386,18 @@ MonoBehaviour:
   GraveObject: {fileID: 1999767996146163777}
   P1AttackBloodSpawn: {fileID: 1663833539}
   P2AttackBloodSpawn: {fileID: 0}
+  AttackSound: {fileID: 0}
+  AttackSound2: {fileID: 0}
   currentHP: 0
   maxHP: 10
   cooldownAttackTime: 0.1
-  P1Damage: 10
+  P1Damage: 1
   P2Damage: 0
   isDeath: 0
+  itemDialogs: []
+  deadDialogs: []
+  deadDialogText: {fileID: 0}
   itemContainer: {fileID: 0}
-  items: []
   friend: {fileID: 0}
   playerName: 
 --- !u!61 &1848445451

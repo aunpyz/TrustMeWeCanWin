@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -60,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool isDeath;
+    public List<string> itemDialogs;
+    public List<string> deadDialogs;
+    public Text deadDialogText;
 
     [Header("Player's item")]
     public ItemContainer itemContainer;
@@ -71,6 +75,18 @@ public class PlayerController : MonoBehaviour
         InitPlayerName();
         maxHP = 10;
         currentHP = maxHP;
+
+        itemDialogs = new List<string>{
+            "I'm dead, but thanks",
+            "Cool dude",
+            "Wow cool item, thanks for sharing"
+        };
+        deadDialogs = new List<string>{
+            "Mr. Stark, I don't feel so good",
+            "U miss me?",
+            "I'm done for"
+        };
+        deadDialogText.transform.parent.gameObject.SetActive(false);
     }
 
     void Update()
@@ -199,6 +215,8 @@ public class PlayerController : MonoBehaviour
         PlayerBody.enabled = false;
         PlayerHand.enabled = false;
         GraveObject.SetActive(true);
+
+        StartCoroutine(Mourn());
     }
 
     public void RestartGame()
@@ -211,6 +229,14 @@ public class PlayerController : MonoBehaviour
     public void AddItem(Item item)
     {
         itemContainer.AddItem(item);
+        if (isDeath)
+        {
+            StartCoroutine(itemContainer.ShowItemDialog(itemDialogs.Random()));
+        }
+        else
+        {
+            StartCoroutine(itemContainer.ShowItemDialog(item));
+        }
     }
 
     public void RemoveItem(Item item)
@@ -235,5 +261,17 @@ public class PlayerController : MonoBehaviour
     {
         playerName = inverse ? isPlayer1 ? "Player2" : "Player1"
                             : isPlayer1 ? "Player1" : "Player2";
+    }
+
+    private IEnumerator Mourn()
+    {
+        while ((isDeath && !friend.isDeath) || (!isDeath && friend.isDeath))
+        {
+            deadDialogText.transform.parent.gameObject.SetActive(true);
+            deadDialogText.text = deadDialogs.Random();
+            yield return new WaitForSeconds(2f);
+            deadDialogText.transform.parent.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
